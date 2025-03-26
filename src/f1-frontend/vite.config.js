@@ -8,4 +8,15 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    watch: {
+      usePolling: true
+    },
+    hmr: {
+      overlay: true,
+    },
+    host: true,
+    strictPort: true,
+    port: 5173
+  },
 })
