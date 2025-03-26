@@ -1,0 +1,24 @@
+services:
+  vite:
+    build:
+      context: f1-frontend
+      dockerfile: .docker/dockerfile
+    ports:
+      - 5173:5173
+  
+  django:
+    build:
+      context: f1-backend
+      dockerfile: .docker/dockerfile
+    ports:
+      - 8000:8000
+    environment:
+      - GRAPH_DB_ENDPOINT=http://graphDB:7200
+      - REPO_NAME=circuitos
+  
+  graphDB:
+    image: ontotext/graphdb:10.8.3
+    container_name: GraphDB
+    hostname: graphdb
+    ports:
+      - 7200:7200
