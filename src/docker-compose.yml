@@ -5,6 +5,8 @@ services:
       dockerfile: .docker/dockerfile
     ports:
       - 5173:5173
+    volumes:
+      - ./f1-frontend/:/vite_app/
   
   django:
     build:
@@ -15,6 +17,8 @@ services:
     environment:
       - GRAPH_DB_ENDPOINT=http://graphDB:7200
       - REPO_NAME=circuitos
+    volumes:
+      - ./f1-backend/:/f1-confia/
   
   graphDB:
     image: ontotext/graphdb:10.8.3
