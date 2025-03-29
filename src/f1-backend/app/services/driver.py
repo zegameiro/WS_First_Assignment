@@ -1,5 +1,5 @@
 from f1_pitstop.graph_db import db
-from app.constants import PRED, TYPE, NS, LIMIT
+from app.constants import *
 
 import json
 

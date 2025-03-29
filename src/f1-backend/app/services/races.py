@@ -1,6 +1,7 @@
-import json
 from f1_pitstop.graph_db import db
-from app.constants import PRED, TYPE, NS
+from app.constants import *
+
+import json
 
 def get_all_races_by_date():
     """Get all the races grouped by year"""
