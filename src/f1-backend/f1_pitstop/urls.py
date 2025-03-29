@@ -25,5 +25,5 @@ urlpatterns = [
     path('races/', app.views.get_all_races_by_date_view, name="all_races"),
 
     # Driver Endpoints
-    
+    path('drivers/', app.views.get_all_drivers_view, name="all_drivers"),
 ]
