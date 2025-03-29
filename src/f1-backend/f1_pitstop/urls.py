@@ -20,6 +20,13 @@ import app.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('testdb/', app.views.testDB),
-    path('races/', app.views.get_all_races_by_date, name="all_races")
+
+    # Races Endpoints
+    path('races/', app.views.get_all_races_by_date_view, name="all_races"),
+
+    # Driver Endpoints
+    path('drivers/', app.views.get_all_drivers_view, name="all_drivers"),
+
+    # Seasons Endpoints
+    path('seasons/', app.views.get_all_seasons_view, name="all_seasons"),
 ]
