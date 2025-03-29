@@ -1,25 +1,13 @@
 from f1_pitstop.graph_db import db
 from app.constants import *
+from app.repositories.races import *
 
 import json
 
 def get_all_races_by_date():
     """Get all the races grouped by year"""
 
-    query = f"""
-        PREFIX ns: <{NS}>
-        PREFIX pred: <{PRED}>
-        PREFIX type: <{TYPE}>
-        SELECT ?raceName (GROUP_CONCAT(CONCAT(STR(?raceId), "__", STR(?year)); SEPARATOR=",") AS ?raceDetails)
-        WHERE {{
-            ?raceId a type:Race ;
-                pred:name ?raceName ;
-                pred:year ?year .
-        }}
-        GROUP BY ?raceName
-    """
-
-    res = db.query(query)
+    res = retrieve_races_by_date
     data = json.loads(res)
 
     results = []

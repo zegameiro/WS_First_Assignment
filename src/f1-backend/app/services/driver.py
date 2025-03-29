@@ -1,5 +1,6 @@
 from f1_pitstop.graph_db import db
 from app.constants import *
+from app.repositories.driver import retrieve_all_drivers
 
 import json
 
@@ -8,32 +9,9 @@ def get_all_drivers(page):
 
     offset = (page - 1) * LIMIT
 
-    query = f"""
-        PREFIX ns: <{NS}>
-        PREFIX pred: <{PRED}>
-        PREFIX type: <{TYPE}>
-
-        SELECT ?driverId ?number ?code ?forename ?surname ?dob ?nationality ?url
-        WHERE {{
-            ?driverId a type:Driver ;
-                pred:forename ?forename ;
-                pred:surname ?surname ;
-                pred:dob ?dob ;
-                pred:nationality ?nationality ;
-                pred:url ?url .
-                
-            OPTIONAL {{
-                ?driverId pred:number ?number ;
-                        pred:code ?code .
-            }}
-        }}
-        ORDER BY ?forename
-        LIMIT {LIMIT}
-        OFFSET {offset}
-    """
-
-    res = db.query(query)
+    res = retrieve_all_drivers(offset)
     data = json.loads(res)
+
     results = []
 
     for binding in data['results']['bindings']:
@@ -48,6 +26,7 @@ def get_all_drivers(page):
 
         if 'number' in binding.keys():
             driver['number'] = binding['number']['value']
+            
         if 'code' in binding.keys():
             driver['code'] = binding['code']['value']
         

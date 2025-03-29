@@ -1,25 +1,14 @@
 from f1_pitstop.graph_db import db
 from app.constants import *
+from app.repositories.seasons import *
+
 
 import json
 
 def get_all_seasons():
     """Get all the seasons"""
 
-    query = f"""
-        PREFIX ns: <{NS}>
-        PREFIX pred: <{PRED}>
-        PREFIX type: <{TYPE}>
-
-        SELECT ?year ?url
-        WHERE {{
-            ?year a type:Season ;
-                pred:url ?url
-        }}
-        ORDER BY ?year
-    """
-
-    res = db.query(query)
+    res = retrieve_all_seasons()
     data = json.loads(res)
     results = []
 
