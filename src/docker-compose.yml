@@ -16,7 +16,7 @@ services:
       - 8000:8000
     environment:
       - GRAPH_DB_ENDPOINT=http://graphDB:7200
-      - REPO_NAME=circuitos
+      - REPO_NAME=f1-pitstop
     volumes:
       - ./f1-backend/:/f1-confia/
   
