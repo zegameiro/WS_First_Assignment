@@ -4,9 +4,7 @@ function Home() {
 
   return (
     <div className='m-3'>
-      <Button>
-        woof
-      </Button>
+      <button className="btn">Medium</button>
     </div>
   );
 }
