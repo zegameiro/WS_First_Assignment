@@ -1,13 +1,21 @@
-import logo from "../../../public/f1_logo.png"
+import logo from "../../../public/f1_logo.png";
+import { Link } from "react-router";
 
-function NavBar({children}) {
-
+function NavBar({ children }) {
   return (
-    <div className="bg-[#e10600] w-full h-16 px-4 flex items-center gap-5">
-      <img src={logo} alt="logo" className="h-16"/>
-      {children}
+    <div className="navbar bg-[#e10600] shadow-sm">
+      <div className="flex-1">
+        <Link to="#">
+          <img src={logo} alt="logo" className="h-10" />
+        </Link>
+      </div>
+      <div className="flex-none">
+        <ul className="menu menu-horizontal px-2">
+          {children}
+        </ul>
+      </div>
     </div>
-  )
+  );
 }
 
 export default NavBar;
