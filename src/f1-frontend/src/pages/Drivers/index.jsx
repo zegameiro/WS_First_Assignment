@@ -2,7 +2,7 @@ import { GiFullMotorcycleHelmet } from "react-icons/gi";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 
-import driversService from "../../services/driversService";
+import { driversService } from "../../services";
 import { Table } from "../../components";
 
 const Drivers = () => {
