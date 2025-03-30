@@ -1,4 +1,5 @@
 import { PiMagnifyingGlassPlusBold } from "react-icons/pi";
+import { flagCountries } from "../../pages/DriverProfile/utils";
 
 function ConstructorsTable({ constructors, indexConstructors }) {
   
@@ -18,7 +19,13 @@ function ConstructorsTable({ constructors, indexConstructors }) {
         <tr key={index} className="text-lg">
           <th>{indexConstructors + index + 1}</th>
           <td>{`${constructor.name}`}</td>
-          <td>{<span className="badge badge-outline badge-success">{constructor.nationality	}</span>}</td>
+          <td>
+              <img
+                src={`${flagCountries[constructor.nationality]}`}
+                alt="Country Flag"
+                className="h-10 w-10"
+              />
+            </td>
           <td>{<span className="badge badge-outline badge-error">{constructor.url}</span>}</td>
           <td><button className="btn btn-soft btn-info btn-circle"><PiMagnifyingGlassPlusBold className="text-xl" /></button></td>
         </tr>

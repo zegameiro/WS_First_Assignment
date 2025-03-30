@@ -1,16 +1,16 @@
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { PiMagnifyingGlassPlusBold } from "react-icons/pi";
 import { Link } from "react-router";
+import { flagCountries } from "../../pages/DriverProfile/utils";
 
 function DriversTable({ drivers, indexDriver }) {
-
   return (
     <table className="table table-zebra">
       <thead>
         <tr>
           <th></th>
           <th>Name</th>
-              <th>Nationality</th>
+          <th>Nationality</th>
           <th>Code</th>
           <th>Number</th>
           <th></th>
@@ -21,7 +21,13 @@ function DriversTable({ drivers, indexDriver }) {
           <tr key={index} className="text-lg">
             <th>{indexDriver + index + 1}</th>
             <td>{`${driver.forename} ${driver.surname}`}</td>
-                <td>{`${driver.nationality	}`}</td>
+            <td>
+              <img
+                src={`${flagCountries[driver.nationality]}`}
+                alt="Country Flag"
+                className="h-10 w-10"
+              />
+            </td>
             <td>
               {driver.code ? (
                 <span className="badge badge-outline badge-error">
