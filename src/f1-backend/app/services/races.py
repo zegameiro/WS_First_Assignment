@@ -4,10 +4,12 @@ from app.repositories.races import *
 
 import json
 
-def get_all_races_by_date():
+def get_all_races_by_date(page):
     """Get all the races grouped by year"""
 
-    res = retrieve_races_by_date
+    offset = (page - 1) * LIMIT
+
+    res = retrieve_races_by_date(offset)
     data = json.loads(res)
 
     results = []

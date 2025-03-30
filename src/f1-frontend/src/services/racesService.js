@@ -1,8 +1,8 @@
 import client from "./client"
 
 const race_service = {
-    async getRaces(){
-        return await client.get("/races");
+    async getRaces(page){
+        return await client.get(`/races?page=${page}`);
     }
 }
 

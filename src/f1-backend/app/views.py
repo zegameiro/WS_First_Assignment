@@ -11,8 +11,8 @@ from app.services.constructors import *
 # Get all the races grouped by year
 @api_view(['GET'])
 def get_all_races_by_date_view(request):
-
-    results = get_all_races_by_date()
+    page = int(request.GET.get('page', 1))
+    results = get_all_races_by_date(page)
     final_res = {
         'data': results
     }

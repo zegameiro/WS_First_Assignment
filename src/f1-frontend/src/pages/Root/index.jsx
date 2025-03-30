@@ -15,7 +15,7 @@ function Root({}) {
             <span className="ml-2 text-xl font-semibold">Drivers</span>
           </span>
         </NavBarLink>
-        <NavBarLink to="#">
+        <NavBarLink to="/races">
           <span className="flex items-center">
             <GiF1Car className="text-3xl" />
             <span className="ml-2 text-xl font-semibold">Races</span>

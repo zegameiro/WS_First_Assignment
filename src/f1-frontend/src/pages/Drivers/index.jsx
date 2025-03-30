@@ -25,7 +25,7 @@ const Drivers = () => {
         <GiFullMotorcycleHelmet />
         <h1 className="font-bold">Drivers</h1>
       </span>
-			<Table drivers={driversData?.data} page={page} setPage={setPage} />
+			<Table data={driversData?.data} page={page} setPage={setPage} />
     </div>
   );
 };
