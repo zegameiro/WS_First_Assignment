@@ -19,6 +19,12 @@ function Races(){
 		queryClient.refetchQueries({ queryKey: ["races"], type: "active" });
 	}, [page]);
 
+	useEffect(()=>{
+    if(racesData?.data.data.length === 0){
+      setPage(page - 1);
+    }
+  },[racesData])
+
 	return (
 	<div className="p-6">
 		<span className="flex items-center text-3xl gap-2">

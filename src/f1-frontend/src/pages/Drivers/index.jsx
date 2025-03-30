@@ -20,6 +20,12 @@ const Drivers = () => {
     queryClient.refetchQueries({ queryKey: ["drivers"], type: "active" });
   }, [page]);
 
+  useEffect(()=>{
+    if(driversData?.data.data.length === 0){
+      setPage(page - 1);
+    }
+  },[driversData])
+
   return (
     <div className="p-6">
       <span className="flex items-center text-3xl gap-2">

@@ -15,6 +15,8 @@ def retrieve_races_by_date(offset):
                 pred:year ?year .
         }}
         GROUP BY ?raceName
+        LIMIT {LIMIT}
+        OFFSET {offset}
     """
 
     res = db.query(query)
