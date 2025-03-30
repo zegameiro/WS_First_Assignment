@@ -1,8 +1,8 @@
 import client from "./client"
 
 const driversService = {
-    async getDrivers(){
-        return await client.get("/drivers");
+    async getDrivers(page) {
+        return await client.get(`/drivers?page=${page}`);
     }
 }
 
