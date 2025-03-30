@@ -19,6 +19,7 @@ def get_all_drivers(page):
         driver['driverId'] = binding['driverId']['value']
         driver['forename'] = binding['forename']['value']
         driver['surname'] = binding['surname']['value']
+        driver['nationality'] = binding['nationality']['value']
 
         if 'number' in binding.keys():
             driver['number'] = binding['number']['value']
@@ -56,4 +57,24 @@ def get_driver_by_id(driver_id):
     return driver
 
 
-    
+
+def search_drivers(regex, page):
+    """Get all the drivers"""
+
+    offset = (page - 1) * LIMIT
+
+    res = retrieve_drivers_by_regex(regex, offset)
+    data = json.loads(res)
+    results = []
+
+    for binding in data['results']['bindings']:
+        driver = {}
+
+        driver['driverId'] = binding['driverId']['value']
+        driver['forename'] = binding['forename']['value']
+        driver['surname'] = binding['surname']['value']
+        driver['nationality'] = binding['nationality']['value']
+
+        results.append(driver)
+
+    return results

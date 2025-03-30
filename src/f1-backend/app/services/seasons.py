@@ -5,10 +5,12 @@ from app.repositories.seasons import *
 
 import json
 
-def get_all_seasons():
+def get_all_seasons(page):
     """Get all the seasons"""
+    
+    offset = (page - 1) * LIMIT
 
-    res = retrieve_all_seasons()
+    res = retrieve_all_seasons(offset)
     data = json.loads(res)
     results = []
 

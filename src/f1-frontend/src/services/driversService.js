@@ -7,6 +7,9 @@ const driversService = {
 
     async getDriverById(driverId) {
         return await client.get(`/drivers/${driverId}`);
+    },
+    async getDriversSearch(page,query){
+        return await client.get(`/drivers/search?query=${query}&page=${page}`)
     }
 }
 

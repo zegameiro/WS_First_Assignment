@@ -1,8 +1,8 @@
 import client from "./client"
 
 const seasonsService = {
-    async getSeasons(){
-        return await client.get("/seasons");
+    async getSeasons(page){
+        return await client.get(`/seasons?page=${page}`);
     }
 }
 

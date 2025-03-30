@@ -10,6 +10,7 @@ function DriversTable({ drivers, indexDriver }) {
         <tr>
           <th></th>
           <th>Name</th>
+              <th>Nationality</th>
           <th>Code</th>
           <th>Number</th>
           <th></th>
@@ -20,6 +21,7 @@ function DriversTable({ drivers, indexDriver }) {
           <tr key={index} className="text-lg">
             <th>{indexDriver + index + 1}</th>
             <td>{`${driver.forename} ${driver.surname}`}</td>
+                <td>{`${driver.nationality	}`}</td>
             <td>
               {driver.code ? (
                 <span className="badge badge-outline badge-error">

@@ -1,34 +1,41 @@
 export const TablesTypes = Object.freeze({
   DRIVERS: Symbol("drivers"),
   RACES: Symbol("races"),
+  SEASONS: Symbol("seasons")
 });
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import DriversTable from "./DriversTable";
 import RacesTable from "./RacesTable";
+import SeasonsTable from "./SeasonsTable";
 
 const Table = ({ data, page, setPage, type }) => {
 
 	const [index, setIndex] = useState(0);
 
   let table;
-  if (type === TablesTypes.DRIVERS){
+  if        (type === TablesTypes.DRIVERS){
     table = <DriversTable drivers={data} indexDriver={index}/>
   } else if (type === TablesTypes.RACES) {
     table = <RacesTable races={data} indexRaces={index}/>
-  };
+  } else if (type === TablesTypes.SEASONS) {
+    table = <SeasonsTable seasons={data} indexSeason={index}/>
+  }
 
 	const handlePageChange = (back) => {
 		if (page > 0) {	
-			setPage((prev) => (back ? prev - 1 : prev + 1));
-			if (back) {
-				setIndex((prev) => (prev - 20));
-			} else {
-				setIndex((prev) => (prev + 20));
-			}
+      let newPage = (back ? page - 1 : page + 1)
+			setPage(newPage);
 		}
 	}
+
+  useEffect(()=>{
+    setIndex(page * 20 - 20);
+  },[page]);
+
+  console.log("page",page)
+  console.log("index",index)
 
   return (
     <div className="flex flex-col items-center w-full">
