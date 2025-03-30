@@ -1,19 +1,31 @@
+export const TablesTypes = Object.freeze({
+  DRIVERS: Symbol("drivers"),
+  RACES: Symbol("races"),
+});
+
 import { useState } from "react";
 
-
 import DriversTable from "./DriversTable";
+import RacesTable from "./RacesTable";
 
 const Table = ({ data, page, setPage, type }) => {
 
-	const [indexDriver, setIndexDriver] = useState(0);
+	const [index, setIndex] = useState(0);
+
+  let table;
+  if (type === TablesTypes.DRIVERS){
+    table = <DriversTable drivers={data} indexDriver={index}/>
+  } else if (type === TablesTypes.RACES) {
+    table = <RacesTable races={data} indexRaces={index}/>
+  };
 
 	const handlePageChange = (back) => {
 		if (page > 0) {	
 			setPage((prev) => (back ? prev - 1 : prev + 1));
 			if (back) {
-				setIndexDriver((prev) => (prev - 20));
+				setIndex((prev) => (prev - 20));
 			} else {
-				setIndexDriver((prev) => (prev + 20));
+				setIndex((prev) => (prev + 20));
 			}
 		}
 	}
@@ -21,7 +33,7 @@ const Table = ({ data, page, setPage, type }) => {
   return (
     <div className="flex flex-col items-center w-full">
       <div className="pt-4 overflow-x-auto w-full">
-        <DriversTable drivers={data} indexDriver={indexDriver}/>
+        {table}
       </div>
       <div className="join justify-center w-full pt-4">
         <button className={`join-item btn btn-soft ${page == 1 ? "btn-disabled" : "btn-error"}`} onClick={() => handlePageChange(true)}>«</button>

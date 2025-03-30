@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 import { driversService } from "../../services";
 import { Table } from "../../components";
+import { TablesTypes } from "../../components/Table";
 
 const Drivers = () => {
 
@@ -25,7 +26,7 @@ const Drivers = () => {
         <GiFullMotorcycleHelmet />
         <h1 className="font-bold">Drivers</h1>
       </span>
-			<Table data={driversData?.data} page={page} setPage={setPage} />
+			<Table data={driversData?.data} page={page} setPage={setPage} type={TablesTypes.DRIVERS} />
     </div>
   );
 };
