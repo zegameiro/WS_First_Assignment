@@ -31,6 +31,7 @@ urlpatterns = [
 
     # Driver Endpoints
     path('drivers/', app.views.get_all_drivers_view, name="all_drivers"),
+    path('drivers/search', app.views.search_drivers_view, name="search_drivers"),
 
     # Seasons Endpoints
     path('seasons/', app.views.get_all_seasons_view, name="all_seasons"),

@@ -29,6 +29,17 @@ def get_all_drivers_view(request):
     }
     return Response(final_res, status=status.HTTP_200_OK)
 
+# Get drivers by regex
+@api_view(['GET'])
+def search_drivers_view(request):
+    page = int(request.GET.get('page', 1))
+    regex = request.GET.get('query', "")
+    results = search_drivers(regex, page)
+    final_res = {
+        'data': results
+    }
+    return Response(final_res, status=status.HTTP_200_OK)
+
 # Get all the seasons
 @api_view(['GET'])
 def get_all_seasons_view(request):

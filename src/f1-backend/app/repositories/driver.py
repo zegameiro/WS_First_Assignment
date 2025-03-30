@@ -27,3 +27,25 @@ def retrieve_all_drivers(offset):
     res = db.query(query)
 
     return res
+
+def retrieve_drivers_by_regex(query, offset):
+
+    query = f"""
+        PREFIX pred: <{PRED}>
+        PREFIX type: <{TYPE}>
+
+        SELECT ?driverId ?forename ?surname
+        WHERE {{
+            ?driverId a type:Driver ;
+                pred:forename ?forename ;
+                pred:surname ?surname .
+            
+            FILTER regex(CONCAT(?forename, " ", ?surname), "{query}", "i") .
+        }}
+        LIMIT {LIMIT}
+        OFFSET {offset}
+    """
+
+    res = db.query(query)
+
+    return res
