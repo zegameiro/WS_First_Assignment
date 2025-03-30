@@ -2,7 +2,7 @@ import { GiFullMotorcycleHelmet } from "react-icons/gi";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 
-import { getDrivers } from "../../api/driverActions";
+import { driversService } from "../../services";
 import { Table } from "../../components";
 
 const Drivers = () => {
@@ -12,7 +12,7 @@ const Drivers = () => {
   const queryClient = useQueryClient();
 	const { data: driversData } = useQuery({
 		queryKey: ["drivers"],
-		queryFn: () => getDrivers(page),
+		queryFn: () => driversService.getDrivers(page),
 	});
 
   useEffect(() => {

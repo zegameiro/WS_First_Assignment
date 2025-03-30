@@ -1,0 +1,31 @@
+
+
+function driversTable({ drivers }) {
+
+    return(
+        <table className="table table-zebra">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+							<th>Code</th>
+							<th>Number</th>
+							<th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {drivers?.data.map((driver, index) => (
+							<tr key={index} className="text-lg">
+								<th>{indexDriver + index + 1}</th>
+								<td>{`${driver.forename} ${driver.surname}`}</td>
+								<td>{driver.code ? <span className="badge badge-outline badge-error">{driver.code}</span> : <FaRegQuestionCircle className="text-warning text-xl" />}</td>
+								<td>{driver.number ? driver.number : <FaRegQuestionCircle className="text-warning text-xl" />}</td>
+								<td><button className="btn btn-soft btn-info btn-circle"><PiMagnifyingGlassPlusBold className="text-xl" /></button></td>
+							</tr>
+						))}
+          </tbody>
+        </table>
+    )
+}
+
+export default driversTable;
