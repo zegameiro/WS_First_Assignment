@@ -9,7 +9,7 @@ const routes = createBrowserRouter([
         { index: true, Component: Home },
         { path: "driver", Component: Drivers },
         { path: "races", Component: Races },
-        { path: "driver/:id", Component: DriverProfile },,
+        { path: "driver/:id", Component: DriverProfile },
         { path: "seasons", Component: Seasons},
         { path: "constructors", Component: Constructors},
       ]
