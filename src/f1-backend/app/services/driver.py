@@ -20,9 +20,6 @@ def get_all_drivers(page):
         driver['driverId'] = binding['driverId']['value']
         driver['forename'] = binding['forename']['value']
         driver['surname'] = binding['surname']['value']
-        driver['dob'] = binding['dob']['value']
-        driver['nationality'] = binding['nationality']['value']
-        driver['url'] = binding['url']['value']
 
         if 'number' in binding.keys():
             driver['number'] = binding['number']['value']

@@ -8,14 +8,11 @@ def retrieve_all_drivers(offset):
         PREFIX pred: <{PRED}>
         PREFIX type: <{TYPE}>
 
-        SELECT ?driverId ?number ?code ?forename ?surname ?dob ?nationality ?url
+        SELECT ?driverId ?number ?code ?forename ?surname
         WHERE {{
             ?driverId a type:Driver ;
                 pred:forename ?forename ;
                 pred:surname ?surname ;
-                pred:dob ?dob ;
-                pred:nationality ?nationality ;
-                pred:url ?url .
                 
             OPTIONAL {{
                 ?driverId pred:number ?number ;
