@@ -25,6 +25,11 @@ def get_all_races_by_date(page):
                 'raceId': raceId,
                 'year': year
             })
+
+        d['raceDetails'].sort(key=lambda x: x['year'], reverse=True)
+        
         results.append(d)
+
+    results.sort(key=lambda x: x['raceName'])
 
     return results
