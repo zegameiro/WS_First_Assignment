@@ -22,3 +22,47 @@ def retrieve_races_by_date(offset):
     res = db.query(query)
 
     return res
+
+def retrieve_races_by_year(year, offset):
+    query = f"""
+        PREFIX pred: <{PRED}>
+        PREFIX type: <{TYPE}>
+        SELECT ?raceId ?raceName ?driverId ?constructorId ?fastestLap ?winnerDriverId ?winnerConstructorId
+        WHERE {{
+            {{
+                SELECT ?raceId ?raceName (MIN(?fastest) AS ?minFastestLap)
+                WHERE {{
+                    ?raceId a type:Race ;
+                        pred:name ?raceName ;
+                        pred:year "{year}"^^xsd:int .
+                    ?result a type:Result ;
+                        pred:raceId ?raceId ;
+                        pred:fastestLapTime ?fastest .
+                }}
+                GROUP BY ?raceId ?raceName
+            }}
+            
+            ?result a type:Result ;
+                    pred:raceId ?raceId ;
+                    pred:fastestLapTime ?fastestLap ;
+                    pred:driverId ?driverId ;
+                    pred:constructorId ?constructorId ;
+                    pred:position ?position .
+                    
+            FILTER(?fastestLap = ?minFastestLap)
+
+            ?winnerResult a type:Result ;
+                    pred:raceId ?raceId ;
+                    pred:driverId ?winnerDriverId ;
+                    pred:constructorId ?winnerConstructorId ;
+                    pred:position "1"^^xsd:string .
+
+        }}
+        LIMIT {LIMIT}
+        OFFSET {offset}
+    """
+
+
+    res = db.query(query)
+
+    return res

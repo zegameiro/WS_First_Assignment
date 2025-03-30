@@ -19,6 +19,16 @@ def get_all_races_by_date_view(request):
 
     return Response(final_res, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+def get_all_races_by_year_view(request, year):
+    page = int(request.GET.get('page', 1))
+    results = get_all_races_by_year(year,page)
+    final_res = {
+        'data': results
+    }
+
+    return Response(final_res, status=status.HTTP_200_OK)
+
 # Get all the drivers
 @api_view(['GET'])
 def get_all_drivers_view(request):

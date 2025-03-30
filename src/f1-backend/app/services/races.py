@@ -33,3 +33,31 @@ def get_all_races_by_date(page):
     results.sort(key=lambda x: x['raceName'])
 
     return results
+
+def get_all_races_by_year(year, page):
+
+    offset = (page - 1) * LIMIT
+
+    res = retrieve_races_by_year(year, offset)
+    data = json.loads(res)
+
+    results = []
+    for binding in data['results']['bindings']:
+        d = {}
+        d['raceName'] = binding['raceName']['value']
+        d['raceId'] = binding['raceId']['value']
+        d['winner'] = {
+            "driverId": binding['winnerDriverId']['value'],
+            "constructorId": binding['winnerConstructorId']['value']
+        }
+        d['fastestLap'] = {
+            "time": binding['fastestLap']['value'],
+            "driverId": binding['driverId']['value'],
+            "constructorId": binding['constructorId']['value']
+        }
+        
+        results.append(d)
+
+    results.sort(key=lambda x: x['raceName'])
+
+    return results
