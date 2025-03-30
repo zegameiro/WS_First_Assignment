@@ -52,8 +52,8 @@ def get_all_seasons_view(request):
 
 @api_view(['GET'])
 def get_all_constructors_view(request):
-
-    results = get_all_constructors()
+    page = int(request.GET.get('page', 1))
+    results = get_all_constructors(page)
     final_res = {
         'data': results
     }
