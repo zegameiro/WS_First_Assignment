@@ -2,7 +2,7 @@ FROM node:23-alpine
 
 WORKDIR /vite_app
 
-COPY package.json .
+COPY package*.json ./
 
 RUN npm install
 
