@@ -5,7 +5,7 @@ function NavBar({ children }) {
   return (
     <div className="navbar bg-[#e10600] shadow-sm">
       <div className="flex-1">
-        <Link to="#">
+        <Link to="/">
           <img src={logo} alt="logo" className="h-10" />
         </Link>
       </div>

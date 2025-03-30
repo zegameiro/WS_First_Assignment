@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import { Button, NavBar, NavBarLink } from "../../components";
+import { NavBar, NavBarLink } from "../../components";
 
 import { GiFullMotorcycleHelmet, GiF1Car } from "react-icons/gi";
 import { FaCalendarDays } from "react-icons/fa6";
@@ -9,7 +9,7 @@ function Root({}) {
   return (
     <div>
       <NavBar>
-        <NavBarLink to="#">
+        <NavBarLink to="/drivers">
           <span className="flex items-center">
             <GiFullMotorcycleHelmet />
             <span className="ml-2 text-xl font-semibold">Drivers</span>
