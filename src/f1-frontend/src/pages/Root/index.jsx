@@ -9,7 +9,7 @@ function Root({}) {
   return (
     <div>
       <NavBar>
-        <NavBarLink to="/drivers">
+        <NavBarLink to="/driver">
           <span className="flex items-center">
             <GiFullMotorcycleHelmet />
             <span className="ml-2 text-xl font-semibold">Drivers</span>

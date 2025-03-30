@@ -1,6 +1,5 @@
-from f1_pitstop.graph_db import db
 from app.constants import *
-from app.repositories.driver import retrieve_all_drivers
+from app.repositories.driver import *
 
 import json
 
@@ -30,4 +29,31 @@ def get_all_drivers(page):
         results.append(driver)
 
     return results
+
+def get_driver_by_id(driver_id):
+    """Get driver by id"""
+
+    res = retrieve_driver_by_id(driver_id)
+    data = json.loads(res)
+    
+    if len(data['results']['bindings']) < 1:
+        raise Exception("Driver not found")
+
+    binding = data['results']['bindings'][0]
+
+    driver = {}
+    driver['forename'] = binding['forename']['value']
+    driver['surname'] = binding['surname']['value']
+    driver['dob'] = binding['dob']['value']
+    driver['nationality'] = binding['nationality']['value']
+    driver['url'] = binding['url']['value']
+
+    if 'number' in binding.keys():
+        driver['number'] = binding['number']['value']
+    if 'code' in binding.keys():
+        driver['code'] = binding['code']['value']
+
+    return driver
+
+
     
