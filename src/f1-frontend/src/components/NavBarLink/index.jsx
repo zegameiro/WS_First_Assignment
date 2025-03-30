@@ -1,13 +1,15 @@
 import { Link } from "react-router";
 
-function NavBarLink({name,to}) {
+function NavBarLink({children,to}) {
 
   return (
-    <Link to={to}>
-        <div className="text-white text-md underline">
-            woof
-        </div>
-    </Link>
+    <>
+      <li className="hover:bg-amber-50 hover:rounded-sm hover:duration-500 hover:text-black">
+        <Link to={to} className="text-xl font-semibold">
+          {children}
+        </Link>
+      </li>
+    </>
   )
 }
 

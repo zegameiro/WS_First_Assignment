@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Button } from "../../components";
 import { driversService } from "../../services";
 
 function Home() {
@@ -13,7 +12,7 @@ function Home() {
 
   return (
     <div className='m-3'>
-      dadad
+      <button className="btn">Medium</button>
     </div>
   );
 }

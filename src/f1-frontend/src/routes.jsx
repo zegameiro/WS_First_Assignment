@@ -1,5 +1,5 @@
 import {createBrowserRouter} from "react-router";
-import { Home, Root } from "./pages";
+import { Home, Root, Drivers } from "./pages";
 
 const routes = createBrowserRouter([
     {
@@ -7,6 +7,7 @@ const routes = createBrowserRouter([
       element: <Root/>,
       children: [
         { index: true, Component: Home },
+        { path: "drivers", Component: Drivers },
       ]
     },
   ]);
