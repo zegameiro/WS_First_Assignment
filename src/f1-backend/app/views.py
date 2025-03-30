@@ -32,7 +32,8 @@ def get_all_drivers_view(request):
 # Get all the seasons
 @api_view(['GET'])
 def get_all_seasons_view(request):
-    results = get_all_seasons()
+    page = int(request.GET.get('page', 1))
+    results = get_all_seasons(page)
     final_res = {
         'data': results
     }

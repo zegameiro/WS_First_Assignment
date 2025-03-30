@@ -1,4 +1,3 @@
-import { FaRegQuestionCircle } from "react-icons/fa";
 import { PiMagnifyingGlassPlusBold } from "react-icons/pi";
 
 function RacesTable({ races, indexRaces }) {

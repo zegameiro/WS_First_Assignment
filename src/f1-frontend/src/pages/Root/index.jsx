@@ -21,7 +21,7 @@ function Root({}) {
             <span className="ml-2 text-xl font-semibold">Races</span>
           </span>
         </NavBarLink>
-        <NavBarLink to="#">
+        <NavBarLink to="/seasons">
           <span className="flex items-center">
             <FaCalendarDays />
             <span className="ml-2 text-xl font-semibold">Seasons</span>
