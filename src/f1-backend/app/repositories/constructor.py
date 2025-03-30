@@ -1,7 +1,7 @@
 from f1_pitstop.graph_db import db
 from app.constants import *
 
-def retrieve_all_constructors():
+def retrieve_all_constructors(offset):
     """Get all constructors"""
 
     query = f"""
@@ -13,6 +13,8 @@ def retrieve_all_constructors():
             pred:nationality ?nationality ;
             pred:url ?url .
         }}
+        LIMIT {LIMIT}
+        OFFSET {offset}
     """
 
     res = db.query(query)

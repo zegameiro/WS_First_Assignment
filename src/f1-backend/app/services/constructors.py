@@ -2,10 +2,11 @@ from app.repositories.constructor import *
 
 import json
 
-def get_all_constructors():
+def get_all_constructors(page):
     """Get all constructors"""
 
-    res = retrieve_all_constructors()
+    offset = (page - 1) * LIMIT
+    res = retrieve_all_constructors(offset)
     data = json.loads(res)
 
     results = []
