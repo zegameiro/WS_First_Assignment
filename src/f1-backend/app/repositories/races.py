@@ -104,3 +104,26 @@ def retrieve_races_by_name(race_name):
 
     res = db.query(query)
     return res
+
+def retrieve_race_by_id(race_id):
+
+    query = f"""
+        PREFIX pred: <{PRED}>
+        PREFIX type: <{TYPE}>
+        PREFIX ns: <{NS}race/>
+        SELECT ?year ?round ?name ?date ?time ?raceUrl ?circuitId
+        WHERE {{
+            ns:{race_id} a type:Race .
+            
+            OPTIONAL {{ ns:{race_id} pred:year ?year. }}
+            OPTIONAL {{ ns:{race_id} pred:round ?round. }}
+            OPTIONAL {{ ns:{race_id} pred:name ?name. }}
+            OPTIONAL {{ ns:{race_id} pred:date ?date. }}
+            OPTIONAL {{ ns:{race_id} pred:time ?time. }}
+            OPTIONAL {{ ns:{race_id} pred:circuitId ?circuitId. }}
+            OPTIONAL {{ ns:{race_id} pred:url ?raceUrl. }}
+        }}
+    """
+
+    res = db.query(query)
+    return res

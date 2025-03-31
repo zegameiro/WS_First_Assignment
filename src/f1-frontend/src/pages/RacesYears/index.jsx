@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
+
 import { FaCalendarAlt } from "react-icons/fa";
 import { PiMagnifyingGlassPlusBold } from "react-icons/pi";
-
 import { GiF1Car } from "react-icons/gi";
 
 import { racesService } from "../../services";
@@ -26,7 +27,7 @@ const RacesYears = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold flex items-center gap-2">
+      <h1 className="text-3xl font-bold flex items-center gap-2 pb-6">
         <GiF1Car className="text-6xl" /> {raceName}
       </h1>
       <div className="flex w-full justify-center">
@@ -37,7 +38,9 @@ const RacesYears = () => {
                 <div className="card-body">
                   <h2 className="card-title"><FaCalendarAlt /> {race.raceYear}</h2>
                   <div className="justify-end card-actions">
-                    <button className="btn btn-error">See More <PiMagnifyingGlassPlusBold /></button>
+                    <Link to={race.raceId.split(".org/race/")[1]}>
+                      <button className="btn btn-error">See More <PiMagnifyingGlassPlusBold /></button>
+                    </Link>
                   </div>
                 </div>
               </div>
