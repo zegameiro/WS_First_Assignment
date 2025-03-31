@@ -6,6 +6,9 @@ const seasonsService = {
     },
     async getPodiumDrivers(year){
         return await client.get(`/seasons/podium/driver/${year}`)
+    },
+    async getPodiumConstructors(year){
+        return await client.get(`/seasons/podium/constructor/${year}`)
     }
 }
 

@@ -3,6 +3,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { useQueryClient,useQuery } from "@tanstack/react-query";
 import { racesService, seasonsService } from "../../services";
 import TimelineInfoCard from "./card";
+import { motion } from "motion/react"
 
 function Season(){
 	const { year } = useParams();
@@ -14,6 +15,10 @@ function Season(){
 	const {data: drivers,isSuccess:isSuccess2 } = useQuery({
 		queryKey: ["driversPodium"],
 		queryFn: () => seasonsService.getPodiumDrivers(year),
+	})
+	const {data: constructors, isSuccess:isSuccess3} = useQuery({
+		queryKey: ["constructorPodium"],
+		queryFn: ()=> seasonsService.getPodiumConstructors(year),
 	})
 
 	if(isSuccess && isSuccess2){
@@ -45,22 +50,103 @@ function Season(){
 							</ul>
 						</div>
 					</div>
-					<div className="w-1/2 pt-20">
-						<div className="flex justify-around">
-							<div className="bg-amber-700 w-1/5 text-black font-bold text-center h-30 mt-auto rounded-t-xl p-2 pt-5">
-								<div>{drivers.data.data[2].driverName}</div>
-								<div>{drivers.data.data[2].totalPoints}</div>
+					<div className="w-1/2 pt-20 flex flex-col gap-20">
+						<div>
+							<div className="flex justify-around h-[200px]">
+								<motion.div className="bg-amber-700 w-1/5 text-black font-bold text-center h-30 mt-auto rounded-t-xl p-2 pt-5"
+									initial={{height:0}}
+									animate={{height:100}}
+									transition={{duration:0.5}}
+									
+								>
+									<motion.span
+										initial={{opacity:0}}
+										animate={{opacity:1}}
+										transition={{duration:1}}
+									>
+										<div>{drivers.data.data[2].driverName}</div>
+										<div>{drivers.data.data[2].totalPoints}</div>
+									</motion.span>
+								</motion.div>
+								<motion.div className="bg-amber-400 w-1/5 text-black font-bold text-center h-50 mt-auto rounded-t-xl p-2 pt-5"
+									initial={{height:0}}
+									animate={{height:200}}
+									transition={{duration:0.5}}
+								>
+									<motion.span
+										initial={{opacity:0}}
+										animate={{opacity:1}}
+										transition={{duration:1}}
+									>
+										<div>{drivers.data.data[0].driverName}</div>
+										<div>{drivers.data.data[0].totalPoints}</div>
+									</motion.span>
+								</motion.div>
+								<motion.div className="bg-gray-400 w-1/5 text-black font-bold text-center h-40 mt-auto rounded-t-xl p-2 pt-5"
+									initial={{height:0}}
+									animate={{height:150}}
+									transition={{duration:0.5}}
+								>
+									<motion.span
+										initial={{opacity:0}}
+										animate={{opacity:1}}
+										transition={{duration:1}}
+									>
+										<div>{drivers.data.data[1].driverName}</div>
+										<div>{drivers.data.data[1].totalPoints}</div>
+									</motion.span>
+								</motion.div>
 							</div>
-							<div className="bg-amber-400 w-1/5 text-black font-bold text-center h-50 mt-auto rounded-t-xl p-2 pt-5">
-								<div>{drivers.data.data[0].driverName}</div>
-								<div>{drivers.data.data[0].totalPoints}</div>
-							</div>
-							<div className="bg-gray-400 w-1/5 text-black font-bold text-center h-40 mt-auto rounded-t-xl p-2 pt-5">
-								<div>{drivers.data.data[1].driverName}</div>
-								<div>{drivers.data.data[1].totalPoints}</div>
-							</div>
+							<div className="divider text-xl divider-accent">Drivers Podium</div>
 						</div>
-						<div className="divider text-xl divider-accent">Drivers Podium</div>
+						<div>
+							<div className="flex justify-around h-[200px]">
+								<motion.div className="bg-amber-700 w-1/5 text-black font-bold text-center h-30 mt-auto rounded-t-xl p-2 pt-5"
+									initial={{height:0}}
+									animate={{height:100}}
+									transition={{duration:0.5}}
+									
+								>
+									<motion.span
+										initial={{opacity:0}}
+										animate={{opacity:1}}
+										transition={{duration:1}}
+									>
+										<div>{constructors.data.data[2].constructorName}</div>
+										<div>{constructors.data.data[2].totalPoints}</div>
+									</motion.span>
+								</motion.div>
+								<motion.div className="bg-amber-400 w-1/5 text-black font-bold text-center h-50 mt-auto rounded-t-xl p-2 pt-5"
+									initial={{height:0}}
+									animate={{height:200}}
+									transition={{duration:0.5}}
+								>
+									<motion.span
+										initial={{opacity:0}}
+										animate={{opacity:1}}
+										transition={{duration:1}}
+									>
+										<div>{constructors.data.data[0].constructorName}</div>
+										<div>{constructors.data.data[0].totalPoints}</div>
+									</motion.span>
+								</motion.div>
+								<motion.div className="bg-gray-400 w-1/5 text-black font-bold text-center h-40 mt-auto rounded-t-xl p-2 pt-5"
+									initial={{height:0}}
+									animate={{height:150}}
+									transition={{duration:0.5}}
+								>
+									<motion.span
+										initial={{opacity:0}}
+										animate={{opacity:1}}
+										transition={{duration:1}}
+									>
+										<div>{constructors.data.data[1].constructorName}</div>
+										<div>{constructors.data.data[1].totalPoints}</div>
+									</motion.span>
+								</motion.div>
+							</div>
+							<div className="divider text-xl divider-accent">constructor Podium</div>
+						</div>
 					</div>
 				</div>
 			</div>
