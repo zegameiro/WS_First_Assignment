@@ -78,3 +78,24 @@ def search_drivers(regex, page):
         results.append(driver)
 
     return results
+
+def get_driver_qualifying(driver_id):
+    
+    res = retrieve_driver_race_wins(driver_id)
+    data = json.loads(res)
+    results = []
+
+    if len(data['results']['bindings']) > 0:
+
+        for binding in data['results']['bindings']:
+            qualifying = {}
+
+            qualifying['raceId'] = binding['raceId']['value']
+            qualifying['raceName'] = binding['raceName']['value']
+            qualifying['points'] = binding['points']['value']
+            qualifying['raceYear'] = binding['raceYear']['value']
+
+            results.append(qualifying)
+
+    return results
+        
