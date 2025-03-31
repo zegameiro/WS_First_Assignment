@@ -113,3 +113,12 @@ def get_driver_by_id_view(request, driverId):
 
     return Response(final_res, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+def get_races_by_name_view(request, raceName):
+
+    results = get_races_by_name(raceName)
+    final_res = {
+        'races': results
+    }
+    return Response(final_res, status=status.HTTP_200_OK)
+

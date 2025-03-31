@@ -66,3 +66,20 @@ def retrieve_races_by_year(year, offset):
     res = db.query(query)
 
     return res
+
+def retrieve_races_by_name(race_name):
+
+    query = f"""
+        PREFIX pred: <{PRED}>
+        PREFIX type: <{TYPE}>
+        SELECT ?raceId ?raceYear
+        WHERE {{
+            ?raceId a type:Race ;
+                pred:name "{race_name}"^^xsd:string ;
+                pred:year ?raceYear .
+        }}
+        ORDER BY DESC(?raceYear)
+    """
+
+    res = db.query(query)
+    return res

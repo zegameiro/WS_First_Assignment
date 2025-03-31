@@ -9,14 +9,11 @@ import { flagCountries } from "./utils";
 
 const DriverProfile = () => {
   const { id } = useParams();
-  console.log(id);
   const { data: driverData } = useQuery({
     queryKey: ["driver-", id],
     queryFn: () => driversService.getDriverById(id),
   });
 
-  console.log(driverData?.data);
-  console.log(driverData?.data?.wins?.length);
 
   return (
     <div className="p-6">
