@@ -24,7 +24,7 @@ urlpatterns = [
     # Races Endpoints
     path('races/', app.views.get_all_races_by_date_view, name="all_races"),
     path('races/<int:year>/', app.views.get_all_races_by_year_view, name="races_by_year"),
-    path('races/name/<str:raceName>/', app.views.get_races_by_name, name="races_by_name"),
+    path('races/name/<str:raceName>/', app.views.get_races_by_name_view, name="races_by_name"),
 
     # Constructor Endpoints
     path('constructors/', app.views.get_all_constructors_view, name="all_constructors"),

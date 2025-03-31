@@ -69,6 +69,8 @@ def get_all_races_by_year(year, page):
 
 def get_races_by_name(race_name):
 
+    race_name = race_name.replace("_", " ")
+
     res = retrieve_races_by_name(race_name)
     data = json.loads(res)
 

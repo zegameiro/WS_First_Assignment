@@ -6,37 +6,42 @@ import { racesService } from "../../services";
 import { Table } from "../../components";
 import { TablesTypes } from "../../components/Table";
 
-function Races(){
-	const [page, setPage] = useState(1);
+function Races() {
+  const [page, setPage] = useState(1);
 
-	const queryClient = useQueryClient();
-	const { data: racesData,isSuccess } = useQuery({
-		queryKey: ["races"],
-		queryFn: () => racesService.getRaces(page),
-	});
+  const queryClient = useQueryClient();
+  const { data: racesData, isSuccess } = useQuery({
+    queryKey: ["races"],
+    queryFn: () => racesService.getRaces(page),
+  });
 
-	useEffect(() => {
-		queryClient.refetchQueries({ queryKey: ["races"], type: "active" });
-	}, [page]);
+  useEffect(() => {
+    queryClient.refetchQueries({ queryKey: ["races"], type: "active" });
+  }, [page]);
 
-	useEffect(()=>{
-    if(racesData?.data.data.length === 0){
+  useEffect(() => {
+    if (racesData?.data.data.length === 0) {
       setPage(page - 1);
     }
-  },[racesData])
-  	if(isSuccess){
-		  return (
-		  <div className="p-6">
-			  <span className="flex items-center text-3xl gap-2">
-			  <GiF1Car/>
-			  <h1 className="font-bold">Races</h1>
-			  </span>
-				  <Table data={racesData?.data} page={page} setPage={setPage} type={TablesTypes.RACES} />
-		  </div>
-		  );
-	} else {
-		return <div>Loading...</div>
-	}
+  }, [racesData]);
+  if (isSuccess) {
+    return (
+      <div className="p-6">
+        <span className="flex items-center text-3xl gap-2">
+          <GiF1Car />
+          <h1 className="font-bold">Races</h1>
+        </span>
+        <Table
+          data={racesData?.data}
+          page={page}
+          setPage={setPage}
+          type={TablesTypes.RACES}
+        />
+      </div>
+    );
+  } else {
+    return <div>Loading...</div>;
+  }
 }
 
 export default Races;
