@@ -41,5 +41,4 @@ export const flagCountries = {
     "Indonesian": "https://flagsapi.com/ID/flat/64.png",
     "Russian": "https://flagsapi.com/RU/flat/64.png",
     "Hong Kong": "https://flagsapi.com/HK/flat/64.png",
-
 }

@@ -102,11 +102,14 @@ def get_driver_by_id_view(request, driverId):
     
     try:
         results = get_driver_by_id(driverId)
+        wins = get_driver_qualifying(driverId)
     except Exception as e:
         return Response(str(e), status=status.HTTP_404_NOT_FOUND)
 
     final_res = {
-        'data': results
+        'data': results,
+        'wins': wins
     }        
 
     return Response(final_res, status=status.HTTP_200_OK)
+
