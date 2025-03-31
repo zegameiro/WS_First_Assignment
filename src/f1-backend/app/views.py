@@ -166,3 +166,83 @@ def get_race_by_id_view(request, raceId):
     }
     return Response(final_res, status=status.HTTP_200_OK)
 
+@api_view(['DELETE'])
+def delete_season_view(request):
+    if not request.body:
+        return Response("Missing Body", status=status.HTTP_404_NOT_FOUND)
+    data = json.loads(request.body.decode('utf-8'))
+    if "year" not in data:
+        return Response("Missing Year", status=status.HTTP_404_NOT_FOUND)
+
+    year = data["year"]
+
+    results = delete_season_service(year)
+    final_res = {
+        'data': results
+    }
+    return Response(final_res, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def insert_season_view(request):
+    if not request.body:
+        return Response("Missing Body", status=status.HTTP_404_NOT_FOUND)
+    data = json.loads(request.body.decode('utf-8'))
+    if "year" not in data:
+        return Response("Missing Year", status=status.HTTP_404_NOT_FOUND)
+    if "url" not in data:
+        return Response("Missing URL", status=status.HTTP_404_NOT_FOUND)
+    
+    year = data["year"]
+    url = data["url"]
+
+    results = insert_season_service(year, url)
+    final_res = {
+        'data': results
+    }
+    return Response(final_res, status=status.HTTP_200_OK)
+
+@api_view(['DELETE'])
+def delete_race_view(request):
+    if not request.body:
+        return Response("Missing Body", status=status.HTTP_404_NOT_FOUND)
+    
+    data = json.loads(request.body.decode('utf-8'))
+    
+    if "raceId" not in data:
+        return Response("Missing raceId", status=status.HTTP_404_NOT_FOUND)
+    
+    raceId = data["raceId"]
+
+    results = delete_race_service(raceId)
+    
+    final_res = {
+        'data': results
+    }
+    return Response(final_res, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def insert_race_view(request):
+    if not request.body:
+        return Response("Missing Body", status=status.HTTP_404_NOT_FOUND)
+    
+    data = json.loads(request.body.decode('utf-8'))
+    
+    required_fields = ["circuitId", "date", "name", "round", "year"]
+    
+    for field in required_fields:
+        if field not in data:
+            return Response(f"Missing {field}", status=status.HTTP_404_NOT_FOUND)
+    
+    circuitId = data["circuitId"]
+    date = data["date"]
+    name = data["name"]
+    round = data["round"]
+    year = data["year"]
+
+    results = insert_race_service(circuitId, date, name, round, year)
+    
+    final_res = {
+        'data': results
+    }
+    return Response(final_res, status=status.HTTP_200_OK)
+

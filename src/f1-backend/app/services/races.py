@@ -117,6 +117,14 @@ def get_race_by_id(race_id):
 
     return race
 
+def delete_race_service(raceId):
+    res = delete_race(raceId)
+    return res
+
+def insert_race_service(circuitId, date, name, round, year):
+    res = insert_race(circuitId, date, name, round, year)
+    return res
+
 def get_results_by_race_id(race_id):
 
     res = retrieve_results_by_race_id(race_id)
