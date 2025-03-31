@@ -21,7 +21,7 @@ function Season(){
 		queryFn: ()=> seasonsService.getPodiumConstructors(year),
 	})
 
-	if(isSuccess && isSuccess2){
+	if(isSuccess && isSuccess2 && isSuccess3){
 		return(
 			<div className="p-6">
 				<h1 className="text-6xl">Season of {year}</h1>
