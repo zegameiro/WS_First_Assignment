@@ -7,6 +7,7 @@ from app.services.races import *
 from app.services.driver import *
 from app.services.seasons import *
 from app.services.constructors import *
+from app.services.circuits import *
 
 # Get all the races grouped by year
 @api_view(['GET'])
@@ -133,6 +134,21 @@ def get_races_by_name_view(request, raceName):
     results = get_races_by_name(raceName)
     final_res = {
         'races': results
+    }
+    return Response(final_res, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_race_by_id_view(request, raceId):
+
+    try:
+        race = get_race_by_id(raceId)
+        circuit = get_circuit_by_race_id(raceId)
+    except Exception as e:
+        return Response(str(e), status=status.HTTP_404_NOT_FOUND)
+    
+    final_res = {
+        "race": race,
+        "circuit": circuit
     }
     return Response(final_res, status=status.HTTP_200_OK)
 

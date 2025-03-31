@@ -9,6 +9,9 @@ const race_service = {
     },
     async getRacesName(name) {
         return await client.get(`/races/name/${name}`);
+    },
+    async getRaceId(id) {
+        return await client.get(`/races/id/${id}`);
     }
 }
 

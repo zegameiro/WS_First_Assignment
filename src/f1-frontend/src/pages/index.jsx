@@ -7,3 +7,4 @@ export {default as Seasons} from "./Seasons";
 export {default as Constructors} from "./Constructors";
 export {default as Season} from "./Season";
 export {default as RacesYears} from "./RacesYears"
+export {default as RaceProfile} from "./RaceProfile"

@@ -1,4 +1,3 @@
-from datetime import datetime
 from f1_pitstop.graph_db import db
 from app.constants import *
 from app.repositories.races import *
@@ -84,3 +83,36 @@ def get_races_by_name(race_name):
             results.append(d)
 
     return results
+
+def get_race_by_id(race_id):
+
+    res = retrieve_race_by_id(race_id)
+    data = json.loads(res)
+
+    if len(data['results']['bindings']) < 1:
+        raise Exception("Race not found")
+    
+    binding = data['results']['bindings'][0]
+    race = {}
+    if 'year' in binding.keys():
+        race['year'] = binding['year']['value']
+    
+    if 'round' in binding.keys():
+        race['round'] = binding['round']['value']
+
+    if 'name' in binding.keys():
+        race['name'] = binding['name']['value']
+
+    if 'date' in binding.keys():
+        race['date'] = binding['date']['value']
+
+    if 'time' in binding.keys():    
+        race['time'] = binding['time']['value']
+    
+    if 'raceUrl' in binding.keys():
+        race['url'] = binding['raceUrl']['value']
+
+    if 'circuitId' in binding.keys():
+        race['circuitId'] = binding['circuitId']['value']
+
+    return race
