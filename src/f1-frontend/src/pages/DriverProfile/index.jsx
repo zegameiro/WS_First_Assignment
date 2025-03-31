@@ -85,7 +85,7 @@ const DriverProfile = () => {
                 <h1 className="card-title text-2xl">Races Won</h1>
                 <div className="divider divider-error"></div>
                 {driverData?.data?.wins?.length > 0 ? (
-                  <div className="grid grid-cols-3 gap-y-6 gap-x-6 overflow-y-auto w-full h-[40rem]">
+                  <div className="grid grid-cols-3 gap-y-6 gap-x-6 overflow-y-auto w-full max-h-[30rem]">
                     {driverData.data.wins?.map((win) => (
                       <Link
                         className="duration-200 transition hover:scale-90"
