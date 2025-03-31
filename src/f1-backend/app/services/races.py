@@ -1,3 +1,4 @@
+from datetime import datetime
 from f1_pitstop.graph_db import db
 from app.constants import *
 from app.repositories.races import *
@@ -46,18 +47,22 @@ def get_all_races_by_year(year, page):
         d = {}
         d['raceName'] = binding['raceName']['value']
         d['raceId'] = binding['raceId']['value']
+        d['date'] = binding['raceDate']['value']
         d['winner'] = {
             "driverId": binding['winnerDriverId']['value'],
-            "constructorId": binding['winnerConstructorId']['value']
+            "driverName": binding['winnerDriverName']['value'],
+            "constructorId": binding['winnerConstructorId']['value'],
+            "constructorName": binding['winnerConstructorName']['value'],
+            "fastestLap": binding['winnerfastestLap']['value'],
         }
         d['fastestLap'] = {
             "time": binding['fastestLap']['value'],
-            "driverId": binding['driverId']['value'],
-            "constructorId": binding['constructorId']['value']
+            "driverId": binding['fastestDriverId']['value'],
+            "driverName": binding['fastestDriverName']['value'],
+            "constructorId": binding['fastestConstructorId']['value'],
+            "constructorName": binding['fastestConstructorName']['value']
         }
         
         results.append(d)
-
-    results.sort(key=lambda x: x['raceName'])
 
     return results

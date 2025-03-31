@@ -1,5 +1,5 @@
 import {createBrowserRouter} from "react-router";
-import { Home, Root, Drivers, Races, DriverProfile, Seasons, Constructors } from "./pages";
+import { Home, Root, Drivers, Races, DriverProfile, Seasons, Constructors, Season } from "./pages";
 
 const routes = createBrowserRouter([
     {
@@ -11,6 +11,7 @@ const routes = createBrowserRouter([
         { path: "races", Component: Races },
         { path: "driver/:id", Component: DriverProfile },
         { path: "seasons", Component: Seasons},
+        { path: "seasons/:year", Component: Season},
         { path: "constructors", Component: Constructors},
       ]
     },

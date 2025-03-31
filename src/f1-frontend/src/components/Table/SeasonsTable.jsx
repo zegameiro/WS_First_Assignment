@@ -1,4 +1,5 @@
 import { PiMagnifyingGlassPlusBold } from "react-icons/pi";
+import { Link } from "react-router";
 
 function SeasonsTable({ seasons, indexSeason }) {
   
@@ -18,7 +19,7 @@ function SeasonsTable({ seasons, indexSeason }) {
           <th>{indexSeason + index + 1}</th>
           <td>{`${season.year}`}</td>
           <td>{<a className="badge badge-soft badge-primary" href={season.url}>{season.url}</a>}</td>
-          <td><button className="btn btn-soft btn-info btn-circle"><PiMagnifyingGlassPlusBold className="text-xl" /></button></td>
+          <td><Link to={`/seasons/${season.year}`}><button className="btn btn-soft btn-info btn-circle"><PiMagnifyingGlassPlusBold className="text-xl" /></button></Link></td>
         </tr>
       ))}
     </tbody>
