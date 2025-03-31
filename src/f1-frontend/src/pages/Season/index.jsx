@@ -39,7 +39,22 @@ function Season(){
 								)}
 							</ul>
 						</div>
-						<div className="w-1/2"></div>
+					</div>
+					<div className="w-1/2">
+						<div className="flex justify-around">
+							<div className="bg-amber-700 w-1/5 text-black font-bold text-center h-30 mt-auto rounded-t-xl">
+								<div>name</div>
+								<div>points pts</div>
+							</div>
+							<div className="bg-amber-400 w-1/5 text-black font-bold text-center h-50 mt-auto rounded-t-xl">
+								<div>name</div>
+								<div>points pts</div>
+							</div>
+							<div className="bg-gray-400 w-1/5 text-black font-bold text-center h-40 mt-auto rounded-t-xl">
+								<div>name</div>
+								<div>points pts</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
