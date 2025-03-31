@@ -116,3 +116,29 @@ def get_race_by_id(race_id):
         race['circuitId'] = binding['circuitId']['value']
 
     return race
+
+def get_results_by_race_id(race_id):
+
+    res = retrieve_results_by_race_id(race_id)
+    data = json.loads(res)
+
+    # if len(data['results']['bindings']) < 1:
+    #     raise Exception("Results not found")
+    
+    results = []
+    for binding in data['results']['bindings']:
+        d = {}
+        d['driverId'] = binding['driverId']['value']
+        d['driverName'] = binding['driverName']['value']
+        d['constructorName'] = binding['constructorName']['value']
+        d['position'] = binding['position']['value']
+
+        if 'time' in binding.keys():
+            d['time'] = binding['time']['value']
+
+        if 'laps' in binding.keys():
+            d['laps'] = binding['laps']['value']
+
+        results.append(d)
+
+    return results

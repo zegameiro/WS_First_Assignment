@@ -43,10 +43,8 @@ def retrieve_driver_by_id(driver_id):
                 pred:nationality ?nationality ;
                 pred:url ?url .
 
-            OPTIONAL {{
-                ns:{driver_id} pred:number ?number ;
-                        pred:code ?code .
-            }}
+            OPTIONAL {{ ns:{driver_id} pred:number ?number . }}
+            OPTIONAL {{ ns:{driver_id} pred:code ?code . }}
         }}
     """
 

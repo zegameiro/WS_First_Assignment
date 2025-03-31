@@ -155,12 +155,14 @@ def get_race_by_id_view(request, raceId):
     try:
         race = get_race_by_id(raceId)
         circuit = get_circuit_by_race_id(raceId)
+        results = get_results_by_race_id(raceId)
     except Exception as e:
         return Response(str(e), status=status.HTTP_404_NOT_FOUND)
     
     final_res = {
         "race": race,
-        "circuit": circuit
+        "circuit": circuit,
+        "results": results
     }
     return Response(final_res, status=status.HTTP_200_OK)
 

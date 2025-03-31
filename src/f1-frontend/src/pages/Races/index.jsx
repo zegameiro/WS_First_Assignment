@@ -1,4 +1,4 @@
-import { GiF1Car } from "react-icons/gi";
+import { FaFlagCheckered } from "react-icons/fa";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 
@@ -28,7 +28,7 @@ function Races() {
     return (
       <div className="p-6">
         <span className="flex items-center text-3xl gap-2">
-          <GiF1Car />
+          <FaFlagCheckered />
           <h1 className="font-bold">Races</h1>
         </span>
         <Table

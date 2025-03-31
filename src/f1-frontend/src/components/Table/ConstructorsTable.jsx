@@ -11,7 +11,6 @@ function ConstructorsTable({ constructors, indexConstructors }) {
         <th>Name</th>
         <th>nationality</th>
         <th>wikipedia</th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -27,7 +26,6 @@ function ConstructorsTable({ constructors, indexConstructors }) {
               />
             </td>
           <td>{<span className="badge badge-outline badge-error">{constructor.url}</span>}</td>
-          <td><button className="btn btn-soft btn-info btn-circle"><PiMagnifyingGlassPlusBold className="text-xl" /></button></td>
         </tr>
       ))}
     </tbody>

@@ -127,3 +127,34 @@ def retrieve_race_by_id(race_id):
 
     res = db.query(query)
     return res
+
+def retrieve_results_by_race_id(race_id):
+
+    query = f"""
+        PREFIX pred: <{PRED}>
+        PREFIX type: <{TYPE}>
+        PREFIX ns: <{NS}race/>
+        SELECT ?driverId ?driverName ?constructorId ?constructorName ?position ?time ?laps
+
+        WHERE {{
+            ?result a type:Result ;
+                pred:raceId ns:{race_id} ;
+                pred:driverId ?driverId ;
+                pred:constructorId ?constructorId ;
+                pred:position ?position . 
+            OPTIONAL {{ ?result pred:laps ?laps. }}
+            OPTIONAL {{ ?result pred:time ?time. }}
+
+            ?driverId a type:Driver ;
+                pred:forename ?driverForename ;
+                pred:surname ?driverSurname .
+            BIND(CONCAT(?driverForename, " ", ?driverSurname) AS ?driverName)
+
+            ?constructorId a type:Constructor ;
+                pred:name ?constructorName .
+        }}
+        LIMIT 3
+    """
+
+    res = db.query(query)
+    return res

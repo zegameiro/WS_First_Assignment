@@ -1,9 +1,11 @@
 import { useParams } from "react-router"; 
 import { FaCheckCircle } from "react-icons/fa";
-import { useQueryClient,useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { racesService, seasonsService } from "../../services";
 import TimelineInfoCard from "./card";
 import { motion } from "motion/react"
+import { GiFullMotorcycleHelmet, GiF1Car } from "react-icons/gi";
+import { FaFireAlt } from "react-icons/fa";
 
 function Season(){
 	const { year } = useParams();
@@ -64,8 +66,10 @@ function Season(){
 										animate={{opacity:1}}
 										transition={{duration:1}}
 									>
-										<div>{drivers.data.data[2].driverName}</div>
-										<div>{drivers.data.data[2].totalPoints}</div>
+										<div className="flex flex-col text-center justify-center items-center">
+											<span className="flex gap-1 items-center"><GiFullMotorcycleHelmet />{drivers.data.data[2].driverName}</span>
+											<span className="flex items-center gap-1"><FaFireAlt /> {drivers.data.data[2].totalPoints}</span>
+										</div>
 									</motion.span>
 								</motion.div>
 								<motion.div className="bg-amber-400 w-1/5 text-black font-bold text-center h-50 mt-auto rounded-t-xl p-2 pt-5"
@@ -78,8 +82,10 @@ function Season(){
 										animate={{opacity:1}}
 										transition={{duration:1}}
 									>
-										<div>{drivers.data.data[0].driverName}</div>
-										<div>{drivers.data.data[0].totalPoints}</div>
+										<div className="flex flex-col text-center justify-center items-center">
+											<span className="flex gap-1 items-center"><GiFullMotorcycleHelmet />{drivers.data.data[0].driverName}</span>
+											<span className="flex items-center gap-1"><FaFireAlt /> {drivers.data.data[0].totalPoints}</span>
+										</div>
 									</motion.span>
 								</motion.div>
 								<motion.div className="bg-gray-400 w-1/5 text-black font-bold text-center h-40 mt-auto rounded-t-xl p-2 pt-5"
@@ -92,8 +98,10 @@ function Season(){
 										animate={{opacity:1}}
 										transition={{duration:1}}
 									>
-										<div>{drivers.data.data[1].driverName}</div>
-										<div>{drivers.data.data[1].totalPoints}</div>
+										<div className="flex flex-col text-center justify-center items-center">
+											<span className="flex gap-1 items-center"><GiFullMotorcycleHelmet />{drivers.data.data[1].driverName}</span>
+											<span className="flex items-center gap-1"><FaFireAlt /> {drivers.data.data[1].totalPoints}</span>
+										</div>
 									</motion.span>
 								</motion.div>
 							</div>
@@ -112,8 +120,10 @@ function Season(){
 										animate={{opacity:1}}
 										transition={{duration:1}}
 									>
-										<div>{constructors.data.data[2].constructorName}</div>
-										<div>{constructors.data.data[2].totalPoints}</div>
+										<div className="flex flex-col text-center justify-center items-center">
+											<span className="flex gap-1 items-center"><GiF1Car className="text-2xl" />{constructors.data.data[2].constructorName}</span>
+											<span className="flex items-center gap-1"><FaFireAlt /> {constructors.data.data[2].totalPoints}</span>
+										</div>
 									</motion.span>
 								</motion.div>
 								<motion.div className="bg-amber-400 w-1/5 text-black font-bold text-center h-50 mt-auto rounded-t-xl p-2 pt-5"
@@ -126,8 +136,10 @@ function Season(){
 										animate={{opacity:1}}
 										transition={{duration:1}}
 									>
-										<div>{constructors.data.data[0].constructorName}</div>
-										<div>{constructors.data.data[0].totalPoints}</div>
+										<div className="flex flex-col text-center justify-center items-center">
+											<span className="flex gap-1 items-center"><GiF1Car className="text-2xl" />{constructors.data.data[0].constructorName}</span>
+											<span className="flex items-center gap-1"><FaFireAlt /> {constructors.data.data[0].totalPoints}</span>
+										</div>
 									</motion.span>
 								</motion.div>
 								<motion.div className="bg-gray-400 w-1/5 text-black font-bold text-center h-40 mt-auto rounded-t-xl p-2 pt-5"
@@ -140,8 +152,10 @@ function Season(){
 										animate={{opacity:1}}
 										transition={{duration:1}}
 									>
-										<div>{constructors.data.data[1].constructorName}</div>
-										<div>{constructors.data.data[1].totalPoints}</div>
+										<div className="flex flex-col text-center justify-center items-center">
+											<span className="flex gap-1 items-center"><GiF1Car className="text-2xl" />{constructors.data.data[1].constructorName}</span>
+											<span className="flex items-center gap-1"><FaFireAlt /> {constructors.data.data[1].totalPoints}</span>
+										</div>
 									</motion.span>
 								</motion.div>
 							</div>
