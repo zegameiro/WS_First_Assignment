@@ -114,6 +114,20 @@ def get_driver_by_id_view(request, driverId):
     return Response(final_res, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
+def get_season_podium_view(request, year):
+    try:
+        results = get_podium(year)
+    except Exception as e:
+        return Response(str(e), status=status.HTTP_404_NOT_FOUND)
+    
+    final_res = {
+        'data': results
+    }
+
+    return Response(final_res, status=status.HTTP_200_OK)
+    
+
+@api_view(['GET'])
 def get_races_by_name_view(request, raceName):
 
     results = get_races_by_name(raceName)
