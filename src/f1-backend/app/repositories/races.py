@@ -27,7 +27,7 @@ def retrieve_races_by_year(year, offset):
     query = f"""
         PREFIX pred: <{PRED}>
         PREFIX type: <{TYPE}>
-        SELECT ?raceId ?raceName ?driverId ?constructorId ?fastestLap ?winnerDriverId ?winnerConstructorId
+        SELECT ?raceId ?raceName ?raceDate ?fastestDriverId ?fastestDriverName ?fastestConstructorId ?fastestConstructorName ?fastestLap ?winnerDriverId ?winnerDriverName ?winnerConstructorId ?winnerConstructorName ?winnerfastestLap
         WHERE {{
             {{
                 SELECT ?raceId ?raceName (MIN(?fastest) AS ?minFastestLap)
@@ -42,24 +42,45 @@ def retrieve_races_by_year(year, offset):
                 GROUP BY ?raceId ?raceName
             }}
             
+            ?raceId a type:Race ;
+                pred:date ?raceDate .
+
             ?result a type:Result ;
                     pred:raceId ?raceId ;
                     pred:fastestLapTime ?fastestLap ;
-                    pred:driverId ?driverId ;
-                    pred:constructorId ?constructorId ;
+                    pred:driverId ?fastestDriverId ;
+                    pred:constructorId ?fastestConstructorId ;
                     pred:position ?position .
                     
             FILTER(?fastestLap = ?minFastestLap)
 
             ?winnerResult a type:Result ;
                     pred:raceId ?raceId ;
+                    pred:fastestLapTime ?winnerfastestLap ;
                     pred:driverId ?winnerDriverId ;
                     pred:constructorId ?winnerConstructorId ;
                     pred:position "1"^^xsd:string .
+                    
+            ?winnerDriverId a type:Driver ;
+                    pred:forename ?winnerDriverForename ;
+                    pred:surname ?winnerDriverSurname .
+
+            BIND(CONCAT(?winnerDriverForename, " ",  ?winnerDriverSurname) as ?winnerDriverName) .
+
+            ?winnerConstructorId a type:Constructor ;
+                    pred:name ?winnerConstructorName .
+
+            ?fastestDriverId a type:Driver ;
+                    pred:forename ?fastestDriverForename ;
+                    pred:surname ?fastestDriverSurname .
+
+            BIND(CONCAT(?fastestDriverForename, " ",  ?fastestDriverSurname) as ?fastestDriverName) .
+
+            ?fastestConstructorId a type:Constructor ;
+                pred:name ?fastestConstructorName .
 
         }}
-        LIMIT {LIMIT}
-        OFFSET {offset}
+        ORDER BY DESC(?raceDate)
     """
 
 

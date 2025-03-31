@@ -10,7 +10,7 @@ function Races(){
 	const [page, setPage] = useState(1);
 
 	const queryClient = useQueryClient();
-	const { data: racesData } = useQuery({
+	const { data: racesData,isSuccess } = useQuery({
 		queryKey: ["races"],
 		queryFn: () => racesService.getRaces(page),
 	});
@@ -24,16 +24,19 @@ function Races(){
       setPage(page - 1);
     }
   },[racesData])
-
-	return (
-	<div className="p-6">
-		<span className="flex items-center text-3xl gap-2">
-		<GiF1Car/>
-		<h1 className="font-bold">Races</h1>
-		</span>
-			<Table data={racesData?.data} page={page} setPage={setPage} type={TablesTypes.RACES} />
-	</div>
-	);
+  	if(isSuccess){
+		  return (
+		  <div className="p-6">
+			  <span className="flex items-center text-3xl gap-2">
+			  <GiF1Car/>
+			  <h1 className="font-bold">Races</h1>
+			  </span>
+				  <Table data={racesData?.data} page={page} setPage={setPage} type={TablesTypes.RACES} />
+		  </div>
+		  );
+	} else {
+		return <div>Loading...</div>
+	}
 }
 
 export default Races;
