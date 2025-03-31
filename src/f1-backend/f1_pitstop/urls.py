@@ -23,6 +23,9 @@ urlpatterns = [
 
     # Races Endpoints
     path('races/', app.views.get_all_races_by_date_view, name="all_races"),
+    path('races/delete', app.views.delete_race_view, name="delete_race"),
+    path('races/insert', app.views.insert_race_view, name="insert_race"),
+
     path('races/<int:year>/', app.views.get_all_races_by_year_view, name="races_by_year"),
     path('races/name/<str:raceName>/', app.views.get_races_by_name_view, name="races_by_name"),
     path('races/id/<int:raceId>/', app.views.get_race_by_id_view, name="race_by_id"),
@@ -39,6 +42,8 @@ urlpatterns = [
 
     # Seasons Endpoints
     path('seasons/', app.views.get_all_seasons_view, name="all_seasons"),
+    path('seasons/delete', app.views.delete_season_view, name="delete_season"),
+    path('seasons/insert', app.views.insert_season_view, name="insert_season"),
     path('seasons/podium/driver/<int:year>', app.views.get_season_driver_podium_view, name="get_driver_podium"),
     path('seasons/podium/constructor/<int:year>', app.views.get_season_constructor_podium_view, name="get_constructor_podium")
 ]

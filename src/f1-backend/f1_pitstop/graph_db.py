@@ -15,5 +15,11 @@ class GraphDB:
 
         return res
 
+    def update(self,query):
+        payload_query = {"update": query}
+
+        res = self.accessor.sparql_update(body=payload_query, repo_name=self.repo_name)
+
+        return res
 
 db = GraphDB()

@@ -1,5 +1,6 @@
 from f1_pitstop.graph_db import db
 from app.constants import *
+import json
 
 def retrieve_races_by_date(offset):
     """Retrieve all seasons from the database with pagination."""
@@ -127,3 +128,61 @@ def retrieve_race_by_id(race_id):
 
     res = db.query(query)
     return res
+
+def delete_race(raceId):
+    """Delete a race"""
+
+    query = f"""
+        PREFIX pred: <{PRED}>
+        PREFIX type: <{TYPE}>
+
+        DELETE {{ <{raceId}> ?p ?o }}
+        WHERE {{
+            <{raceId}> a type:Race ;
+                ?p ?o .
+        }}
+        
+    """
+
+    res = db.update(query)
+
+    return res
+
+def insert_race(circuitId, date, name, round, year):
+    """insert a race"""
+
+    query = f"""
+        PREFIX pred: <{PRED}>
+        PREFIX type: <{TYPE}>
+        PREFIX race: <{NS}race/>
+
+        SELECT (MAX(xsd:int(STRAFTER(str(?raceId), "/race/"))) AS ?maxRaceId)
+        WHERE {{
+            ?raceId a type:Race .
+        }}
+    """
+
+    res = db.query(query)
+    data = json.loads(res)
+    nextId = int(data["results"]["bindings"][0]["maxRaceId"]["value"]) + 1
+
+    query = f"""
+        PREFIX pred: <{PRED}>
+        PREFIX type: <{TYPE}>
+        PREFIX race: <{NS}race/>
+
+        INSERT DATA
+        {{
+            race:{nextId} a type:Race ;
+                pred:circuitId <{circuitId}> ;
+                pred:date "{date}"^^xsd:string ;
+                pred:name "{name}"^^xsd:string ;
+                pred:round "{round}"^^xsd:int ;
+                pred:year "{year}"^^xsd:int .
+        }}
+        
+    """
+
+    res = db.update(query)
+
+    return nextId

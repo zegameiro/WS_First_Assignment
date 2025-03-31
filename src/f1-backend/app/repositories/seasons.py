@@ -84,3 +84,43 @@ def get_constructors_podium(year):
     res = db.query(query)
 
     return res
+
+def delete_season(year):
+    """Delete a season"""
+
+    query = f"""
+        PREFIX pred: <{PRED}>
+        PREFIX type: <{TYPE}>
+        PREFIX season: <{NS}season/>
+
+        DELETE {{ season:{year} ?p ?o }}
+        WHERE {{
+            season:{year} a type:Season ;
+                ?p ?o .
+        }}
+        
+    """
+
+    res = db.update(query)
+
+    return res
+
+def insert_season(year, url):
+    """insert a season"""
+
+    query = f"""
+        PREFIX pred: <{PRED}>
+        PREFIX type: <{TYPE}>
+        PREFIX season: <{NS}season/>
+
+        INSERT DATA
+        {{
+            season:{year} a type:Season ;
+                pred:url <{url}> .
+        }}
+        
+    """
+
+    res = db.update(query)
+
+    return res
