@@ -1,7 +1,7 @@
 import { useParams } from "react-router"; 
 import { FaCheckCircle } from "react-icons/fa";
 import { useQueryClient,useQuery } from "@tanstack/react-query";
-import { racesService } from "../../services";
+import { racesService, seasonsService } from "../../services";
 import TimelineInfoCard from "./card";
 
 function Season(){
@@ -11,7 +11,12 @@ function Season(){
 		queryKey: ["races"],
 		queryFn: () => racesService.getRacesYear(year),
 	});
-	if(isSuccess){
+	const {data: drivers,isSuccess:isSuccess2 } = useQuery({
+		queryKey: ["driversPodium"],
+		queryFn: () => seasonsService.getPodiumDrivers(year),
+	})
+
+	if(isSuccess && isSuccess2){
 		return(
 			<div className="p-6">
 				<h1 className="text-6xl">Season of {year}</h1>
@@ -40,21 +45,22 @@ function Season(){
 							</ul>
 						</div>
 					</div>
-					<div className="w-1/2">
+					<div className="w-1/2 pt-20">
 						<div className="flex justify-around">
-							<div className="bg-amber-700 w-1/5 text-black font-bold text-center h-30 mt-auto rounded-t-xl">
-								<div>name</div>
-								<div>points pts</div>
+							<div className="bg-amber-700 w-1/5 text-black font-bold text-center h-30 mt-auto rounded-t-xl p-2 pt-5">
+								<div>{drivers.data.data[2].driverName}</div>
+								<div>{drivers.data.data[2].totalPoints}</div>
 							</div>
-							<div className="bg-amber-400 w-1/5 text-black font-bold text-center h-50 mt-auto rounded-t-xl">
-								<div>name</div>
-								<div>points pts</div>
+							<div className="bg-amber-400 w-1/5 text-black font-bold text-center h-50 mt-auto rounded-t-xl p-2 pt-5">
+								<div>{drivers.data.data[0].driverName}</div>
+								<div>{drivers.data.data[0].totalPoints}</div>
 							</div>
-							<div className="bg-gray-400 w-1/5 text-black font-bold text-center h-40 mt-auto rounded-t-xl">
-								<div>name</div>
-								<div>points pts</div>
+							<div className="bg-gray-400 w-1/5 text-black font-bold text-center h-40 mt-auto rounded-t-xl p-2 pt-5">
+								<div>{drivers.data.data[1].driverName}</div>
+								<div>{drivers.data.data[1].totalPoints}</div>
 							</div>
 						</div>
+						<div className="divider text-xl divider-accent">Drivers Podium</div>
 					</div>
 				</div>
 			</div>

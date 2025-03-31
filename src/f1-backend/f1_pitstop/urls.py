@@ -39,5 +39,6 @@ urlpatterns = [
 
     # Seasons Endpoints
     path('seasons/', app.views.get_all_seasons_view, name="all_seasons"),
-    path('seasons/podium/driver/<int:year>', app.views.get_season_podium_view, name="get_driver_podium")
+    path('seasons/podium/driver/<int:year>', app.views.get_season_driver_podium_view, name="get_driver_podium"),
+    path('seasons/podium/constructor/<int:year>', app.views.get_season_constructor_podium_view, name="get_constructor_podium")
 ]
