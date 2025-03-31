@@ -1,6 +1,8 @@
 import { PiMagnifyingGlassPlusBold } from "react-icons/pi";
+import { Link } from "react-router";
 
 function RacesTable({ races, indexRaces }) {
+
   return(
   <table className="table table-zebra">
     <thead>
@@ -19,7 +21,11 @@ function RacesTable({ races, indexRaces }) {
           <td>{`${raceT.raceName}`}</td>
           <td>{<span className="badge badge-outline badge-success">{raceT.raceDetails !== undefined && raceT.raceDetails[0].year}</span>}</td>
           <td>{<span className="badge badge-outline badge-error">{raceT.raceDetails !== undefined && raceT.raceDetails[raceT.raceDetails.length-1].year}</span>}</td>
-          <td><button className="btn btn-soft btn-info btn-circle"><PiMagnifyingGlassPlusBold className="text-xl" /></button></td>
+          <td>
+            <Link to={`${raceT.raceName.replace(/\s/g, "_")}`}>
+              <button className="btn btn-soft btn-info btn-circle"><PiMagnifyingGlassPlusBold className="text-xl" /></button>
+            </Link>
+          </td>
         </tr>
       ))}
     </tbody>

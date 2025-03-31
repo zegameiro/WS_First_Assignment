@@ -6,3 +6,4 @@ export {default as DriverProfile} from "./DriverProfile";
 export {default as Seasons} from "./Seasons";
 export {default as Constructors} from "./Constructors";
 export {default as Season} from "./Season";
+export {default as RacesYears} from "./RacesYears"

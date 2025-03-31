@@ -66,3 +66,21 @@ def get_all_races_by_year(year, page):
         results.append(d)
 
     return results
+
+def get_races_by_name(race_name):
+
+    race_name = race_name.replace("_", " ")
+
+    res = retrieve_races_by_name(race_name)
+    data = json.loads(res)
+
+    results = []
+    if len(data) > 0:
+        for binding in data['results']['bindings']:
+            d = {}
+            d['raceId'] = binding['raceId']['value']
+            d['raceYear'] = binding['raceYear']['value']
+
+            results.append(d)
+
+    return results

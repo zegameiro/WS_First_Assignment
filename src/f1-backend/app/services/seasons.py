@@ -23,7 +23,7 @@ def get_all_seasons(page):
 
     return results
 
-def get_podium(year):
+def get_driver_podium(year):
 
     res = get_drivers_podium(year)
     data = json.loads(res)
@@ -33,6 +33,22 @@ def get_podium(year):
         d = {}
         d["driverId"] = binding['driverId']['value']
         d["driverName"] = binding['driverName']['value']
+        d["totalPoints"] = binding['totalPoints']['value']
+
+        results.append(d)
+    
+    return results
+
+def get_constructor_podium(year):
+
+    res = get_constructors_podium(year)
+    data = json.loads(res)
+    results = []
+
+    for binding in data['results']['bindings']:
+        d = {}
+        d["constructorId"] = binding['constructorId']['value']
+        d["constructorName"] = binding['constructorName']['value']
         d["totalPoints"] = binding['totalPoints']['value']
 
         results.append(d)
