@@ -44,5 +44,8 @@ urlpatterns = [
     path('seasons/delete', app.views.delete_season_view, name="delete_season"),
     path('seasons/insert', app.views.insert_season_view, name="insert_season"),
     path('seasons/podium/driver/<int:year>', app.views.get_season_driver_podium_view, name="get_driver_podium"),
-    path('seasons/podium/constructor/<int:year>', app.views.get_season_constructor_podium_view, name="get_constructor_podium")
+    path('seasons/podium/constructor/<int:year>', app.views.get_season_constructor_podium_view, name="get_constructor_podium"),
+
+    # Circuits Endpoints
+    path('circuits/', app.views.get_all_circuits_view, name="all_circuits"),
 ]

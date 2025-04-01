@@ -246,3 +246,11 @@ def insert_race_view(request):
     }
     return Response(final_res, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+def get_all_circuits_view(request):
+    results = get_all_circuits()
+    final_res = {
+        'circuits': results
+    }
+    return Response(final_res, status=status.HTTP_200_OK)
+

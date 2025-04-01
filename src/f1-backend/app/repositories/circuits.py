@@ -25,3 +25,19 @@ def retrieve_circuit_by_race_id(race_id):
 
     res = db.query(query)
     return res
+
+def retrieve_all_circuits():
+    
+    query = f"""
+        PREFIX pred: <{PRED}>
+        PREFIX type: <{TYPE}>
+        SELECT ?circuitId ?name
+        WHERE {{
+            ?circuitId a type:Circuit ;
+                pred:name ?name .
+        }}
+        ORDER BY ?name
+    """
+
+    res = db.query(query)
+    return res

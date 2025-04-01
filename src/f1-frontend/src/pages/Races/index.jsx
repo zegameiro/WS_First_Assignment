@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { racesService } from "../../services";
 import { Table } from "../../components";
 import { TablesTypes } from "../../components/Table";
+import { Modal } from "../../components";
 
 function Races() {
   const [page, setPage] = useState(1);
@@ -27,10 +28,19 @@ function Races() {
   if (isSuccess) {
     return (
       <div className="p-6">
-        <span className="flex items-center text-3xl gap-2">
-          <FaFlagCheckered />
-          <h1 className="font-bold">Races</h1>
-        </span>
+        <div className="flex justify-between items-center mb-4">
+          <span className="flex items-center text-3xl gap-2">
+            <FaFlagCheckered />
+            <h1 className="font-bold">Races</h1>
+          </span>
+          <button
+            className="btn bg-red-500"
+            onClick={() => document.getElementById("my_modal_5").showModal()}
+          >
+            Add a new Race
+          </button>
+        </div>
+        <Modal />
         <Table
           data={racesData?.data}
           page={page}

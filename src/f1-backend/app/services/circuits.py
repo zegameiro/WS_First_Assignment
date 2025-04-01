@@ -23,3 +23,17 @@ def get_circuit_by_race_id(race_id):
     circuit['url'] = binding['url']['value']
 
     return circuit
+
+def get_all_circuits():
+    res = retrieve_all_circuits()
+    data = json.loads(res)
+    
+    if (len(data['results']['bindings']) > 0):
+        circuits = []
+        for binding in data['results']['bindings']:
+            circuit = {}
+            circuit['circuitId'] = binding['circuitId']['value']
+            circuit['name'] = binding['name']['value']
+            circuits.append(circuit)
+
+    return circuits

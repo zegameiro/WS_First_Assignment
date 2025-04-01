@@ -17,6 +17,15 @@ const race_service = {
         return await client.delete(`/races/delete`, {
             data: { raceId: raceId }
         })
+    },
+    async addRace(raceData) {
+        return await client.post('races/insert', {
+            circuitId: raceData.circuitId,
+            name: raceData.name,
+            date: raceData.date,
+            year: raceData.year,
+            round: raceData.round
+        })
     }
 }
 
