@@ -24,7 +24,7 @@ O conjunto de dados é composto por múltiplos ficheiros CSV que contêm informa
 - **sprint_results.csv**: Resultados das corridas sprint.
 - **status.csv**: Estado dos pilotos e equipas durante as corridas.
 
-Criámos um ficheiro que transforma todos estes dados para o formato N3, que é um formato de serialização de dados RDF. O ficheiro `utils.py` contém funções para ler os dados dos ficheiros CSV e gerar as tripletas RDF correspondentes. 
+Criámos um ficheiro que transforma todos estes dados para o formato N3, que é um formato de serialização de dados RDF. O ficheiro `data_converter.py` contém funções para ler os dados dos ficheiros CSV e gerar as tripletas RDF correspondentes. 
 
 Para o executar basta:
 
@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 4. Executar o script:
 ```bash
-python3 utils.py
+python3 data_converter.py
 ```
 O script irá gerar um ficheiro `data.n3` na pasta `output`, que contém os dados transformados para o formato N3.
 
@@ -73,10 +73,12 @@ A estrutura do projeto é a seguinte:
 │       ├── lap_times.csv
 │       └── pit_stops.csv
 ├── docs
+│   ├── WS_Pitstop_Report.pdf
 │   └── ws.tp1-v2.pdf
 ├── LICENSE
 ├── README.md
 └── src
+    ├── data_converter.py
     ├── docker-compose.yml
     ├── f1-backend
     │   ├── app
@@ -181,9 +183,7 @@ A estrutura do projeto é a seguinte:
     │   └── vite.config.js
     ├── output
     │   └── data.n3
-    ├── package-lock.json
-    ├── requirements.txt
-    └── utils.py
+    └── requirements.txt
 
 35 directories, 94 files
 ```
