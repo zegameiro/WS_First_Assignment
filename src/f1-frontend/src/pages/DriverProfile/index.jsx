@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { GiFullMotorcycleHelmet } from "react-icons/gi";
 import { PiSmileySadFill } from "react-icons/pi";
@@ -14,7 +14,7 @@ const DriverProfile = () => {
     queryFn: () => driversService.getDriverById(id),
   });
 
-
+  console.log(driverData);
   return (
     <div className="p-6">
       {driverData?.data ? (
@@ -25,8 +25,8 @@ const DriverProfile = () => {
           </h1>
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-10 border-2 border-error shadow-xl p-6 rounded-2xl">
-							<h1 className="text-2xl font-bold">Personal Details</h1>
-							<div className="divider divider-error my-[-20px]"></div>
+              <h1 className="text-2xl font-bold">Personal Details</h1>
+              <div className="divider divider-error my-[-20px]"></div>
               <div className="flex justify-around items-center w-full">
                 <div className="flex flex-col text-xl space-y-3">
                   <p className="flex gap-4">
@@ -85,19 +85,26 @@ const DriverProfile = () => {
                 <h1 className="card-title text-2xl">Races Won</h1>
                 <div className="divider divider-error"></div>
                 {driverData?.data?.wins?.length > 0 ? (
-                  <div className="grid grid-cols-3 gap-y-6 gap-x-6 overflow-y-auto w-full h-[40rem]">
+                  <div className="grid grid-cols-3 gap-y-6 gap-x-6 overflow-y-auto w-full max-h-[30rem]">
                     {driverData.data.wins?.map((win) => (
-                      <div
-                        key={win.raceId}
-                        className="flex flex-col items-center text-warning text-xl border-2 border-warning p-2 space-y-2 rounded-lg"
+                      <Link
+                        className="duration-200 transition hover:scale-90"
+                        to={`/races/${win.raceName.replace(/\s/g, "_")}/${
+                          win.raceId.split(".org/race/")[1]
+                        }`}
                       >
-                        <span className="badge badge-warning text-xl">
-                          {win.raceName} {win.raceYear}
-                        </span>
-                        <span className="flex items-center gap-1">
-													<HiTrophy /> Points {win.points}
-                        </span>
-                      </div>
+                        <div
+                          key={win.raceId}
+                          className="flex flex-col items-center text-warning text-xl border-2 border-warning p-2 space-y-2 rounded-lg"
+                        >
+                          <span className="badge badge-warning text-xl">
+                            {win.raceName} {win.raceYear}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <HiTrophy /> Points {win.points}
+                          </span>
+                        </div>
+                      </Link>
                     ))}
                   </div>
                 ) : (

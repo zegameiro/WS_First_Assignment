@@ -54,3 +54,11 @@ def get_constructor_podium(year):
         results.append(d)
     
     return results
+
+def delete_season_service(year):
+    res = delete_season(year)
+    return res
+
+def insert_season_service(year, url):
+    res = insert_season(year, url)
+    return res

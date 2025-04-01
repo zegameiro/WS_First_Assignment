@@ -9,8 +9,8 @@ function RacesTable({ races, indexRaces }) {
       <tr>
         <th></th>
         <th>Name</th>
-        <th>first Year</th>
         <th>Last Year</th>
+        <th>First Year</th>
         <th></th>
       </tr>
     </thead>
