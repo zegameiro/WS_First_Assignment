@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { useParams } from "react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { FaTrashCan } from "react-icons/fa6";
 
 import { FaCalendarAlt } from "react-icons/fa";
 import { PiMagnifyingGlassPlusBold } from "react-icons/pi";
@@ -11,14 +12,25 @@ import { racesService } from "../../services";
 
 const RacesYears = () => {
   const [raceName, setRaceName] = useState("");
+  const queryClient = useQueryClient();
   let { name } = useParams();
 
-  const { data, isLoading, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ["racesByName-", name],
     queryFn: () => racesService.getRacesName(name),
   });
 
-  console.log(data);
+  const deleteRaceMutation = useMutation({
+    mutationKey: ["delete-race"],
+    mutationFn: (data) => {
+      racesService.deleteRace(data.raceId).then(() => {
+        queryClient.refetchQueries({
+          queryKey: ["racesByName-", name],
+          type: "active",
+        });
+      });
+    },
+  });
 
   useEffect(() => {
     let n = name.replace(/_/g, " ");
@@ -34,13 +46,32 @@ const RacesYears = () => {
         {data?.data?.races.length > 0 ? (
           <div className="grid xl:grid-cols-4 lg:grid-cols-3 gap-10">
             {data?.data?.races.map((race, index) => (
-              <div className="card w-78 bg-black border-1 border-error card-xl shadow-sm" key={index}>
+              <div
+                className="card w-78 bg-black border-1 border-error card-xl shadow-sm"
+                key={index}
+              >
                 <div className="card-body">
-                  <h2 className="card-title"><FaCalendarAlt /> {race.raceYear}</h2>
+                  <h2 className="card-title">
+                    <FaCalendarAlt /> {race.raceYear}
+                  </h2>
                   <div className="justify-end card-actions">
-                    <Link to={race.raceId.split(".org/race/")[1]}>
-                      <button className="btn btn-error">See More <PiMagnifyingGlassPlusBold /></button>
+                    <Link
+                      to={race.raceId.split(".org/race/")[1]}
+                      className="space-x-2"
+                    >
+                      <button className="btn btn-error">
+                        See More <PiMagnifyingGlassPlusBold />
+                      </button>
                     </Link>
+                    <button 
+                        onClick={() => {
+                          deleteRaceMutation.mutate({
+                            raceId: race.raceId
+                          });
+                        }}
+                        className="btn btn-error">
+                        <FaTrashCan />
+                      </button>
                   </div>
                 </div>
               </div>

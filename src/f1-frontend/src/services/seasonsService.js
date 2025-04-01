@@ -9,6 +9,11 @@ const seasonsService = {
     },
     async getPodiumConstructors(year){
         return await client.get(`/seasons/podium/constructor/${year}`)
+    },
+    async deleteSeason(year) {
+        return await client.delete(`/seasons/delete`, {
+            data: { year: year }
+        });
     }
 }
 

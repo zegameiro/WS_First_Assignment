@@ -12,6 +12,11 @@ const race_service = {
     },
     async getRaceId(id) {
         return await client.get(`/races/id/${id}`);
+    },
+    async deleteRace(raceId) {
+        return await client.delete(`/races/delete`, {
+            data: { raceId: raceId }
+        })
     }
 }
 
