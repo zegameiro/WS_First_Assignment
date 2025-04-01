@@ -14,7 +14,13 @@ const seasonsService = {
         return await client.delete(`/seasons/delete`, {
             data: { year: year }
         });
-    }
+    },
+    async addSeason(year,url){
+        return await client.post(`/seasons/insert`,{
+            year: year,
+            url:url
+        });
+    },
 }
 
 export default seasonsService;
