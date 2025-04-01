@@ -9,6 +9,7 @@ services:
       - VITE_BASE_URL=http://localhost:8000
     volumes:
       - ./f1-frontend/:/vite_app/
+      - /vite_app/node_modules
   
   django:
     build:
