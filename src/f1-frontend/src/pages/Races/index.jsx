@@ -1,6 +1,7 @@
 import { FaFlagCheckered } from "react-icons/fa";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
+import { FaCirclePlus } from "react-icons/fa6";
 
 import { racesService } from "../../services";
 import { Table } from "../../components";
@@ -34,10 +35,10 @@ function Races() {
             <h1 className="font-bold">Races</h1>
           </span>
           <button
-            className="btn bg-red-500"
+            className="btn bg-[#e10600]"
             onClick={() => document.getElementById("my_modal_5").showModal()}
           >
-            Add a new Race
+            <FaCirclePlus /> Add a new Race
           </button>
         </div>
         <Modal />
