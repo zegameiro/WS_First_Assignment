@@ -79,4 +79,4 @@ os.makedirs("output", exist_ok=True)
 output_file = "output/data.n3"
 main_graph.serialize(destination=output_file, format="n3")
 
-print(f"🎉 All RDF data combined into {output_file}")
+print(f"All RDF data combined into {output_file}")
