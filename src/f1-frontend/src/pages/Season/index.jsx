@@ -230,7 +230,7 @@ function Season() {
                 </motion.div>
               </div>
               <div className="divider text-xl divider-accent">
-                constructor Podium
+                Constructor Podium
               </div>
             </div>
           </div>
