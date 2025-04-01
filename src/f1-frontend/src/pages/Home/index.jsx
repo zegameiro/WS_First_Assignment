@@ -13,7 +13,6 @@ function Home() {
   const [skew,setSkew] = useState(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    console.log("Page scroll: ", latest)
     setSkew(Math.min((latest / 300) * 15, 15));
   })
   

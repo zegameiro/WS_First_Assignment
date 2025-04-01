@@ -14,8 +14,6 @@ const RaceProfile = () => {
     queryFn: () => racesService.getRaceId(id),
   });
 
-  console.log(data);
-
   return (
     <div className="p-6">
       <h1 className="flex items-center gap-2 text-2xl font-semibold pb-5">
@@ -102,110 +100,112 @@ const RaceProfile = () => {
             </div>
           </div>
         </div>
-        <div className="pt-10">
-          <div className="flex justify-around h-[200px]">
-            <motion.div
-              className="bg-amber-700 w-1/5 text-black font-bold text-center h-30 mt-auto rounded-t-xl p-2 pt-3"
-              initial={{ height: 0 }}
-              animate={{ height: 100 }}
-              transition={{ duration: 0.5 }}
-            >
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
+        {data?.data?.results && data?.data?.results.length > 0 && (
+          <div className="pt-10">
+            <div className="flex justify-around h-[200px]">
+              <motion.div
+                className="bg-amber-700 w-1/5 text-black font-bold text-center h-30 mt-auto rounded-t-xl p-2 pt-3"
+                initial={{ height: 0 }}
+                animate={{ height: 100 }}
+                transition={{ duration: 0.5 }}
               >
-                <div className="flex flex-col text-center justify-center items-center">
-                  <Link
-                    className="duration-200 transition hover:scale-105"
-                    to={`/driver/${
-                      data?.data?.results[2].driverId.split(".org/driver/")[1]
-                    }`}
-                  >
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1 }}
+                >
+                  <div className="flex flex-col text-center justify-center items-center">
+                    <Link
+                      className="duration-200 transition hover:scale-105"
+                      to={`/driver/${
+                        data?.data?.results[2].driverId.split(".org/driver/")[1]
+                      }`}
+                    >
+                      <span className="flex gap-2 items-center">
+                        <GiFullMotorcycleHelmet />
+                        {data?.data?.results[2].driverName}
+                      </span>
+                    </Link>
                     <span className="flex gap-2 items-center">
-                      <GiFullMotorcycleHelmet />
-                      {data?.data?.results[2].driverName}
+                      <GiF1Car className="text-3xl" />
+                      {data?.data?.results[2].constructorName}
                     </span>
-                  </Link>
-                  <span className="flex gap-2 items-center">
-                    <GiF1Car className="text-3xl" />
-                    {data?.data?.results[2].constructorName}
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <FaClock /> {data?.data?.results[2].time}
-                  </span>
-                </div>
-              </motion.span>
-            </motion.div>
-            <motion.div
-              className="bg-amber-400 w-1/5 text-black font-bold text-center h-50 mt-auto rounded-t-xl p-2 pt-3"
-              initial={{ height: 0 }}
-              animate={{ height: 200 }}
-              transition={{ duration: 0.5 }}
-            >
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
+                    <span className="flex items-center gap-2">
+                      <FaClock /> {data?.data?.results[2].time}
+                    </span>
+                  </div>
+                </motion.span>
+              </motion.div>
+              <motion.div
+                className="bg-amber-400 w-1/5 text-black font-bold text-center h-50 mt-auto rounded-t-xl p-2 pt-3"
+                initial={{ height: 0 }}
+                animate={{ height: 200 }}
+                transition={{ duration: 0.5 }}
               >
-                <div className="flex flex-col text-center justify-center items-center">
-                  <Link
-                    className="duration-200 transition hover:scale-105"
-                    to={`/driver/${
-                      data?.data?.results[0].driverId.split(".org/driver/")[1]
-                    }`}
-                  >
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1 }}
+                >
+                  <div className="flex flex-col text-center justify-center items-center">
+                    <Link
+                      className="duration-200 transition hover:scale-105"
+                      to={`/driver/${
+                        data?.data?.results[0].driverId.split(".org/driver/")[1]
+                      }`}
+                    >
+                      <span className="flex gap-2 items-center">
+                        <GiFullMotorcycleHelmet />
+                        {data?.data?.results[0].driverName}
+                      </span>
+                    </Link>
                     <span className="flex gap-2 items-center">
-                      <GiFullMotorcycleHelmet />
-                      {data?.data?.results[0].driverName}
+                      <GiF1Car className="text-3xl" />
+                      {data?.data?.results[0].constructorName}
                     </span>
-                  </Link>
-                  <span className="flex gap-2 items-center">
-                    <GiF1Car className="text-3xl" />
-                    {data?.data?.results[0].constructorName}
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <FaClock /> {data?.data?.results[0].time}
-                  </span>
-                </div>
-              </motion.span>
-            </motion.div>
-            <motion.div
-              className="bg-gray-400 w-1/5 text-black font-bold text-center h-40 mt-auto rounded-t-xl p-2 pt-3"
-              initial={{ height: 0 }}
-              animate={{ height: 150 }}
-              transition={{ duration: 0.5 }}
-            >
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
+                    <span className="flex items-center gap-2">
+                      <FaClock /> {data?.data?.results[0].time}
+                    </span>
+                  </div>
+                </motion.span>
+              </motion.div>
+              <motion.div
+                className="bg-gray-400 w-1/5 text-black font-bold text-center h-40 mt-auto rounded-t-xl p-2 pt-3"
+                initial={{ height: 0 }}
+                animate={{ height: 150 }}
+                transition={{ duration: 0.5 }}
               >
-                <div className="flex flex-col text-center justify-center items-center">
-                  <Link
-                    className="duration-200 transition hover:scale-105"
-                    to={`/driver/${
-                      data?.data?.results[1].driverId.split(".org/driver/")[1]
-                    }`}
-                  >
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1 }}
+                >
+                  <div className="flex flex-col text-center justify-center items-center">
+                    <Link
+                      className="duration-200 transition hover:scale-105"
+                      to={`/driver/${
+                        data?.data?.results[1].driverId.split(".org/driver/")[1]
+                      }`}
+                    >
+                      <span className="flex gap-2 items-center">
+                        <GiFullMotorcycleHelmet />
+                        {data?.data?.results[1].driverName}
+                      </span>
+                    </Link>
                     <span className="flex gap-2 items-center">
-                      <GiFullMotorcycleHelmet />
-                      {data?.data?.results[1].driverName}
+                      <GiF1Car className="text-3xl" />
+                      {data?.data?.results[1].constructorName}
                     </span>
-                  </Link>
-                  <span className="flex gap-2 items-center">
-                    <GiF1Car className="text-3xl" />
-                    {data?.data?.results[1].constructorName}
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <FaClock /> {data?.data?.results[1].time}
-                  </span>
-                </div>
-              </motion.span>
-            </motion.div>
+                    <span className="flex items-center gap-2">
+                      <FaClock /> {data?.data?.results[1].time}
+                    </span>
+                  </div>
+                </motion.span>
+              </motion.div>
+            </div>
+            <div className="divider text-xl divider-accent">Drivers Podium</div>
           </div>
-          <div className="divider text-xl divider-accent">Drivers Podium</div>
-        </div>
+        )}
       </div>
     </div>
   );

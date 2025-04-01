@@ -16,8 +16,6 @@ const Constructors = () => {
 		queryFn: () => constructorService.get_contructors(page),
 	});
 
-  console.log(page)
-
   useEffect(() => {
     queryClient.refetchQueries({ queryKey: ["constructors"], type: "active" });
   }, [page]);

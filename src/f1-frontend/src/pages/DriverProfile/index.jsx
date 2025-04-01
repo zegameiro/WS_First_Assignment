@@ -14,7 +14,6 @@ const DriverProfile = () => {
     queryFn: () => driversService.getDriverById(id),
   });
 
-  console.log(driverData);
   return (
     <div className="p-6">
       {driverData?.data ? (

@@ -25,9 +25,6 @@ const Modal = () => {
 		},
 	});
 
-  console.log(circuits?.data?.circuits);
-	console.log(circuitId);
-
 	const handleSubmit = () => {
 		if(circuitId.length === 0 || name.length === 0 || date.length === 0 || year.length === 0 || round.length === 0) {
 			alert("Please fill all the fields");
