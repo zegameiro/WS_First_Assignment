@@ -2,8 +2,7 @@
 
 ## Overview
 
-O nosso trabalho foca-se no desenvolvimento de um sistema de informação baseado na web, utilizando dados da Fórmula 1. O conjunto de dados que escolhemos abrange informações detalhadas sobre as corridas, temporatas, pilotos, construtores e qualificações para os pilotos e construtores abrangendo desde o início da competição em 1950 até a  temporadamais recente de 2024. Estes dados foram
-extraídos de um dataset do kaggle e depois foram transformados para o formato N3 com auxílio de um script de python.
+O nosso trabalho foca-se no desenvolvimento de um sistema de informação baseado na web, utilizando dados da Fórmula 1. O conjunto de dados que escolhemos abrange informações detalhadas sobre as corridas, temporatas, pilotos, construtores e qualificações para os pilotos e construtores abrangendo desde o início da competição em 1950 até a  temporadamais recente de 2024. Estes dados foram extraídos de um dataset do kaggle e depois foram transformados para o formato N3 com auxílio de um script de python.
 
 ## Dataset
 
@@ -215,7 +214,4 @@ Os serviços serão iniciados e estarão disponíveis nos seguintes endereços:
 |  Backend  | [localhost:8000](http://localhost:8000) |
 |  GraphDB | [localhost:7200](http://localhost:7200) |
 
-## Autores
-
-| Autor |  |
 
